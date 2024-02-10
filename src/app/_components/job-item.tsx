@@ -55,7 +55,7 @@ export const JobItem = memo(({ data }: JobItemProps) => {
             <Badge
               key={tag.jobId}
               variant="outline"
-              className="max-w-60 px-4 py-1 text-sm text-gray-700"
+              className="max-w-60 px-4 py-1 text-sm text-gray-700 font-medium"
             >
               <span className="truncate">{tag.jobTag.name}</span>
             </Badge>
