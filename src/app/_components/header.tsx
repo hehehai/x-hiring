@@ -36,7 +36,7 @@ export const Header = () => {
           <HeaderLink link="mailto:riverhohai@gmail.com">联系我</HeaderLink>。
         </li>
         <li>
-          🥸 网站代码已开源
+          🤗 网站代码已开源
           <HeaderLink link="https://github.com/hehehai/x-hiring">
             Github
           </HeaderLink>

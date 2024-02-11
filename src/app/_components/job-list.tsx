@@ -27,11 +27,13 @@ export const JobList = async ({
   const nextCursor = firstSlice.length > 10 ? firstSlice.pop() : undefined;
 
   return (
-    <div>
+    <div className="w-full">
       {firstSlice.length ? (
         firstSlice.map((job) => <JobItem key={id + job.id} data={job} />)
       ) : (
-        <div>No Data</div>
+        <div className="flex h-full min-h-96 w-full items-center justify-center">
+          <div>No Data</div>
+        </div>
       )}
 
       {nextCursor && (

@@ -47,7 +47,6 @@ export const JobMore = memo(
 
     useEffect(() => {
       if (inView) {
-        console.log("inView");
         void fetchNextPage();
       }
     }, [inView, fetchNextPage]);
@@ -55,8 +54,6 @@ export const JobMore = memo(
     if (error) {
       return <div>Error: {error.message}</div>;
     }
-
-    console.log("data?.pages", data?.pages);
 
     return (
       <>
