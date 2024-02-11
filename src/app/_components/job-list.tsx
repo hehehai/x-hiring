@@ -32,7 +32,7 @@ export const JobList = async ({
         firstSlice.map((job) => <JobItem key={id + job.id} data={job} />)
       ) : (
         <div className="flex h-full min-h-96 w-full items-center justify-center">
-          <div>No Data</div>
+          <div>数据为空</div>
         </div>
       )}
 

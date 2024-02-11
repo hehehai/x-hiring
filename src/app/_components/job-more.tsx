@@ -69,8 +69,8 @@ export const JobMore = memo(
             ref={bottomTriggerRef}
             className="col-span-5 lg:col-span-3 2xl:col-span-4"
           >
-            <div className="flex h-80 w-full items-center justify-center text-4xl">
-              <Spinners className="animate-spin" />
+            <div className="flex h-80 w-full items-center justify-center text-3xl">
+              <Spinners />
             </div>
           </div>
         )}
