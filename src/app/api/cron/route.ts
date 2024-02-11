@@ -3,6 +3,7 @@ import { type NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {
   const authHeader = request.headers.get("authorization");
+  console.log("cron trigger");
 
   if (!process.env.CRON_SECRET && process.env.NODE_ENV !== "development") {
     return Response.json(

@@ -21,7 +21,7 @@ import {
 const MIN_SYNC_DIFF = 5;
 
 // 最大单次同步数
-const MAX_SYNC_CHECK = 100;
+const MAX_SYNC_CHECK = 500;
 
 const v2exDataCapture = async () => {
   try {
@@ -45,7 +45,7 @@ const v2exDataCapture = async () => {
     const savedOriginIds = latest100.map((item) => item.originId);
 
     let page = 1;
-    const fetchArticles: V2EXArticle[] = [];
+    const fetchArticles = new Map<string, V2EXArticle>();
     const syncedIds: string[] = [];
 
     // 遍历抓取
@@ -53,7 +53,7 @@ const v2exDataCapture = async () => {
       if (syncedIds.length > MIN_SYNC_DIFF) {
         break;
       }
-      if (fetchArticles.length > MAX_SYNC_CHECK) {
+      if (fetchArticles.size > MAX_SYNC_CHECK) {
         break;
       }
 
@@ -69,7 +69,7 @@ const v2exDataCapture = async () => {
         const syncIdx = savedOriginIds.indexOf(article.id);
         if (syncIdx === -1) {
           console.log("未同步过", article.id);
-          fetchArticles.push(article);
+          fetchArticles.set(article.id, article);
         } else {
           console.log("已同步过", article.id);
           syncedIds.push(article.id);
@@ -82,13 +82,13 @@ const v2exDataCapture = async () => {
       await sleep(randomInt(500, 1000));
     }
 
-    if (!fetchArticles.length) {
+    if (!fetchArticles.size) {
       console.log("无新文章");
       return;
     }
 
     // 详情
-    for (const article of fetchArticles) {
+    for (const article of fetchArticles.values()) {
       const saveInvalid = async () => {
         console.log("文章摘要无效", article.id);
         const articleData = await db.job.create({
@@ -191,7 +191,7 @@ const eleDuckDataCapture = async () => {
     const savedOriginIds = latest100.map((item) => item.originId);
 
     let page = 1;
-    const fetchArticles: EleDuckArticle[] = [];
+    const fetchArticles = new Map<string, EleDuckArticle>();
     const syncedIds: string[] = [];
 
     // 列表
@@ -199,7 +199,7 @@ const eleDuckDataCapture = async () => {
       if (syncedIds.length > MIN_SYNC_DIFF) {
         break;
       }
-      if (fetchArticles.length > MAX_SYNC_CHECK) {
+      if (fetchArticles.size > MAX_SYNC_CHECK) {
         break;
       }
 
@@ -214,7 +214,7 @@ const eleDuckDataCapture = async () => {
         const syncIdx = savedOriginIds.indexOf(article.id);
         if (syncIdx === -1) {
           console.log("未同步过", article.id);
-          fetchArticles.push(article);
+          fetchArticles.set(article.id, article);
         } else {
           console.log("已同步过", article.id);
           syncedIds.push(article.id);
@@ -227,13 +227,13 @@ const eleDuckDataCapture = async () => {
       await sleep(randomInt(500, 1000));
     }
 
-    if (!fetchArticles.length) {
+    if (!fetchArticles.size) {
       console.log("无新文章");
       return;
     }
 
     // 详情
-    for (const article of fetchArticles) {
+    for (const article of fetchArticles.values()) {
       const saveInvalid = async () => {
         console.log("文章摘要无效", article.id);
         const articleData = await db.job.create({
