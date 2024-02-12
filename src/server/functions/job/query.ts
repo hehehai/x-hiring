@@ -24,7 +24,7 @@ export async function jobQuery(params: JobQueryParams) {
 
   try {
     const withWhere: Prisma.JobWhereInput = {
-      invalid: false
+      invalid: false,
     };
     // 标题查询
     if (s) {
@@ -78,4 +78,32 @@ export async function jobQuery(params: JobQueryParams) {
     console.log(err);
     throw err;
   }
+}
+
+export async function jobDetail(id: string) {
+  const data = await db.job.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      tags: {
+        include: {
+          jobTag: true,
+        },
+      },
+    },
+  });
+  if (data) {
+    await db.job.update({
+      where: {
+        id,
+      },
+      data: {
+        showCount: {
+          increment: 1,
+        },
+      },
+    });
+  }
+  return data;
 }

@@ -6,10 +6,23 @@ import "@/lib/with-proxy";
 import { cn } from "@/lib/utils";
 import Head from "next/head";
 import Script from "next/script";
+import { type Metadata } from "next";
 
-export const metadata = {
-  title: "X-Hiring",
+export const metadata: Metadata = {
+  title: {
+    default: "X-Hiring",
+    template: "%s | X-Hiring",
+  },
   description: "每日最新招聘信息，使用 Google AI 提取摘要",
+  keywords: [
+    "招聘",
+    "程序员招聘",
+    "招聘信息",
+    "远程工作",
+    "远程开发",
+    "兼职开发",
+    "远程兼职",
+  ],
   icons: [{ rel: "icon", url: "/favicon.svg", type: "image/svg+xml" }],
 };
 

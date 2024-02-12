@@ -13,7 +13,6 @@ interface JobDetailClientProps {
 }
 
 export const JobDetailClient = ({ id, onClose }: JobDetailClientProps) => {
-  // TODO: REQUEST ID
   const { data, isFetching } = api.job.detail.useQuery(
     { id },
     { refetchOnWindowFocus: false },

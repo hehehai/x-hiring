@@ -1,5 +1,6 @@
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
 import { db } from "@/server/db";
+import { jobDetail } from "@/server/functions/job/query";
 import { type Prisma } from "@prisma/client";
 import { z } from "zod";
 
@@ -104,31 +105,6 @@ export const jobRouter = createTRPCRouter({
   detail: publicProcedure
     .input(z.object({ id: z.string() }))
     .query(async ({ input }) => {
-      const { id } = input;
-      const data = await db.job.findUnique({
-        where: {
-          id,
-        },
-        include: {
-          tags: {
-            include: {
-              jobTag: true,
-            },
-          },
-        },
-      });
-      if (data) {
-        await db.job.update({
-          where: {
-            id,
-          },
-          data: {
-            showCount: {
-              increment: 1,
-            },
-          },
-        });
-      }
-      return data;
+      return jobDetail(input.id);
     }),
 });
