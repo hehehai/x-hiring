@@ -25,7 +25,7 @@ export const JobMain = ({
       <div className="mt-12 border-t border-zinc-100">
         <Suspense
           fallback={
-            <div className="flex h-full w-full items-center justify-center min-h-96 text-3xl">
+            <div className="flex h-full min-h-96 w-full items-center justify-center text-3xl">
               <Spinners />
             </div>
           }

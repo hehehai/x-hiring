@@ -1,5 +1,7 @@
 import type { Config } from "tailwindcss";
 import { fontFamily } from "tailwindcss/defaultTheme";
+import animate from "tailwindcss-animate";
+import typography from "@tailwindcss/typography";
 import { iconsPlugin, getIconCollections } from "@egoist/tailwindcss-icons";
 
 const config = {
@@ -72,10 +74,34 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      typography: (theme: (val: string) => string[]) => {
+        const fontSize = (size: string) => {
+          const result = theme(`fontSize.${size}`);
+          return Array.isArray(result) ? result[0] : result;
+        };
+        return {
+          DEFAULT: {
+            css: [
+              {
+                "h1, h2, h3": {
+                  fontSize: fontSize("lg"),
+                  marginTop: theme("spacing.4"),
+                  marginBottom: theme("spacing.2"),
+                },
+                hr: {
+                  marginTop: theme("spacing.3"),
+                  marginBottom: theme("spacing.3"),
+                },
+              },
+            ],
+          },
+        };
+      },
     },
   },
   plugins: [
-    require("tailwindcss-animate"),
+    animate,
+    typography,
     iconsPlugin({
       collections: getIconCollections(["lucide"]),
     }),

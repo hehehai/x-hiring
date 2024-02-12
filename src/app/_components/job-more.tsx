@@ -64,7 +64,7 @@ export const JobMore = memo(
             ))}
           </React.Fragment>
         ))}
-        {hasNextPage && (
+        {(cursor || hasNextPage) && (
           <div
             ref={bottomTriggerRef}
             className="col-span-5 lg:col-span-3 2xl:col-span-4"

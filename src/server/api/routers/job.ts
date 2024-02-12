@@ -4,6 +4,7 @@ import { type Prisma } from "@prisma/client";
 import { z } from "zod";
 
 export const jobRouter = createTRPCRouter({
+  // 查询 - 游标
   queryWithCursor: publicProcedure
     .input(
       z.object({
@@ -19,7 +20,7 @@ export const jobRouter = createTRPCRouter({
         cursor: z.string().optional(),
       }),
     )
-    .query(async ({ ctx, input }) => {
+    .query(async ({ input }) => {
       const {
         s = "",
         dateRange = [],
@@ -98,5 +99,25 @@ export const jobRouter = createTRPCRouter({
         console.log(err);
         throw err;
       }
+    }),
+
+  // 详情
+  detail: publicProcedure
+    .input(z.object({ id: z.string() }))
+    .query(async ({ input }) => {
+      const { id } = input;
+      const data = await db.job.findUnique({
+        where: {
+          id,
+        },
+        include: {
+          tags: {
+            include: {
+              jobTag: true,
+            },
+          },
+        },
+      });
+      return data;
     }),
 });

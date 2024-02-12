@@ -2,6 +2,7 @@ import { jobQuery } from "@/server/functions/job/query";
 import { JobItem } from "./job-item";
 import { JobMore } from "./job-more";
 import { useId } from "react";
+import { JobViewDrawer } from "./job-view-drawer";
 
 interface JobListProps {
   s?: string;
@@ -45,6 +46,7 @@ export const JobList = async ({
           cursor={nextCursor.id}
         />
       )}
+      <JobViewDrawer />
     </div>
   );
 };
