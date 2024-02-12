@@ -1,7 +1,6 @@
 "use client";
 
 import { DatePickerWithRange } from "@/components/shared/date-picker-with-range";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -113,9 +112,6 @@ export const JobFilter = ({
           </div>
         ))}
       </div>
-      <Button variant="outline">
-        <span className="i-lucide-filter"></span>
-      </Button>
     </div>
   );
 };

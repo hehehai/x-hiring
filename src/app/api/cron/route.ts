@@ -1,6 +1,8 @@
 import { grabAction } from "@/server/functions/grab";
 import { type NextRequest } from "next/server";
 
+export const runtime = "nodejs";
+
 export async function GET(request: NextRequest) {
   const authHeader = request.headers.get("authorization");
   console.log("cron trigger");

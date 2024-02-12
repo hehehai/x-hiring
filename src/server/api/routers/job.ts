@@ -90,7 +90,6 @@ export const jobRouter = createTRPCRouter({
           nextCursor = nextItem!.id;
         }
 
-        // TODO: 非同步更新， showCount
         return {
           data,
           nextCursor,
@@ -118,6 +117,18 @@ export const jobRouter = createTRPCRouter({
           },
         },
       });
+      if (data) {
+        await db.job.update({
+          where: {
+            id,
+          },
+          data: {
+            showCount: {
+              increment: 1,
+            },
+          },
+        });
+      }
       return data;
     }),
 });

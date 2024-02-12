@@ -73,7 +73,6 @@ export async function jobQuery(params: JobQueryParams) {
       },
     });
 
-    // TODO: 非同步更新， showCount
     return data;
   } catch (err) {
     console.log(err);
