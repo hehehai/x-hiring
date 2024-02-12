@@ -10,7 +10,7 @@ import { JobDetailClient } from "./job-detail.client";
 
 export function JobViewDrawer() {
   const [open, setOpen] = React.useState(false);
-  const [activeId] = useAtom(activeAtom);
+  const [activeId, setActiveId] = useAtom(activeAtom);
 
   useEffect(() => {
     setOpen(!!activeId);
@@ -21,11 +21,22 @@ export function JobViewDrawer() {
       direction="left"
       shouldScaleBackground={false}
       open={open}
-      onOpenChange={setOpen}
+      onOpenChange={(val) => {
+        if (!val) {
+          setActiveId(null);
+        }
+        setOpen(val);
+      }}
     >
-      <DrawerContent className="min-w-[1000px]">
+      <DrawerContent className="min-w-[1000px] focus-visible:outline-0">
         {activeId && (
-          <JobDetailClient id={activeId} onClose={() => setOpen(false)} />
+          <JobDetailClient
+            id={activeId}
+            onClose={() => {
+              setOpen(false);
+              setActiveId(null);
+            }}
+          />
         )}
       </DrawerContent>
     </Drawer>
