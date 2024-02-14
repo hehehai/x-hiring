@@ -38,7 +38,7 @@ export default async function JobDetailPage({ params }: Props) {
     return notFound();
   }
   return (
-    <div className="mx-auto w-full max-w-3xl py-8">
+    <div className="mx-auto w-full max-w-3xl py-8 max-md:px-4">
       <div className="flex items-center justify-between pb-6">
         <Link href={`/`} className="text-2xl font-bold">
           X-Hiring

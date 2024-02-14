@@ -2,6 +2,7 @@
 
 import { useAtom } from "jotai";
 import { activeAtom } from "../_store/job-view.store";
+import { useRouter } from "next/navigation";
 
 export const JobItemWrapper = ({
   id,
@@ -10,14 +11,19 @@ export const JobItemWrapper = ({
   id: string;
   children: React.ReactNode;
 }) => {
+  const router = useRouter();
   const [active, setActive] = useAtom(activeAtom);
 
   return (
     <div
-      className="flex cursor-pointer border-b border-zinc-100 bg-white px-8 py-8 hover:bg-zinc-50"
+      className="flex cursor-pointer border-b border-zinc-100 bg-white p-5 hover:bg-zinc-50 max-md:flex-col max-md:space-y-4 md:p-8"
       onClick={() => {
         if (active !== id) {
-          setActive(id);
+          if (window.document.documentElement.offsetWidth < 768) {
+            router.push(`/${id}`);
+          } else {
+            setActive(id);
+          }
         }
       }}
     >

@@ -19,7 +19,7 @@ export const JobMain = ({
 
   return (
     <main className="mt-14">
-      <div className="container">
+      <div className="px-4 md:px-8">
         <JobFilter s={s} dateRange={dateRange} type={type} tags={tagsArray} />
       </div>
       <div className="mt-12 border-t border-zinc-100">

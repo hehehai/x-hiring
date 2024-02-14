@@ -67,7 +67,7 @@ export const JobFilter = ({
   );
 
   return (
-    <div className="flex w-full items-center space-x-2">
+    <div className="w-full items-center max-md:space-y-3 md:flex md:space-x-2">
       <div className="relative flex-grow">
         <Input
           defaultValue={s}
@@ -98,12 +98,12 @@ export const JobFilter = ({
         }}
         disabled={[{ from: new Date(), to: new Date("2224-01-01") }]}
       />
-      <div className="flex h-10 min-w-[240px] items-center rounded-xl border border-input p-1 gap-1">
+      <div className="flex h-10 min-w-[240px] items-center gap-1 rounded-xl border border-input p-1">
         {sortMap.map((sortType) => (
           <div
             key={sortType.key}
             className={cn(
-              "flex h-8 w-1/2 cursor-pointer items-center justify-center rounded-sm bg-white capitalize hover:bg-gray-100",
+              "flex h-8 w-1/2 cursor-pointer items-center justify-center rounded-sm bg-white capitalize hover:bg-gray-100 max-md:text-sm",
               type === sortType.key ? "bg-gray-100" : "",
             )}
             onClick={() => updateQueryParams({ type: sortType.key })}

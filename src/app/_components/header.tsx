@@ -18,9 +18,11 @@ const HeaderLink = ({
 
 export const Header = () => {
   return (
-    <header className="container pt-20">
-      <div className="mb-12 text-6xl font-semibold">X-Hiring</div>
-      <ul className="min-h-24 w-4/6 space-y-1 rounded-xl bg-orange-500 p-4 text-white">
+    <header className="px-4 pt-10 md:px-8 md:pt-20">
+      <div className="mb-8 text-3xl font-semibold md:mb-12 md:text-6xl">
+        X-Hiring
+      </div>
+      <ul className="min-h-24 space-y-1 rounded-xl bg-orange-500 p-4 text-white md:w-4/6">
         <li>
           🥳 本网站数据来源于
           <HeaderLink link="https://www.v2ex.com/go/jobs">V2EX</HeaderLink>和

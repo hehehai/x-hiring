@@ -28,7 +28,7 @@ export function JobViewDrawer() {
         setOpen(val);
       }}
     >
-      <DrawerContent className="min-w-[1000px] focus-visible:outline-0">
+      <DrawerContent className="focus-visible:outline-0 md:min-w-[1000px]">
         {activeId && (
           <JobDetailClient
             id={activeId}

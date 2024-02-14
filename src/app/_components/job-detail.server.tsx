@@ -43,7 +43,7 @@ export const JobDetail = ({ data, ...props }: JobDetailServerProps) => {
             <Badge
               key={tag.jobId}
               variant="outline"
-              className="max-w-60 px-4 py-1 text-sm font-medium text-gray-700"
+              className="max-w-60 px-4 py-1 md:text-sm font-medium text-gray-700"
             >
               <span className="truncate">{tag.jobTag.name}</span>
             </Badge>
