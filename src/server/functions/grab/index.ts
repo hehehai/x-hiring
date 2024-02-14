@@ -34,7 +34,7 @@ const v2exDataCapture = async () => {
         originSite: "V2EX",
       },
       orderBy: {
-        syncAt: "desc",
+        originCreateAt: "desc",
       },
       take: 100,
     });
@@ -74,7 +74,6 @@ const v2exDataCapture = async () => {
           console.log("已同步过", article.id);
           syncedIds.push(article.id);
         }
-        savedOriginIds.splice(syncIdx, 1);
       });
 
       page += 1;
@@ -180,7 +179,7 @@ const eleDuckDataCapture = async () => {
         originSite: "ELE_DUCK",
       },
       orderBy: {
-        syncAt: "desc",
+        originCreateAt: "desc",
       },
       take: 100,
     });
@@ -219,7 +218,6 @@ const eleDuckDataCapture = async () => {
           console.log("已同步过", article.id);
           syncedIds.push(article.id);
         }
-        savedOriginIds.splice(syncIdx, 1);
       });
 
       page += 1;
