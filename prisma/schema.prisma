@@ -6,8 +6,9 @@ generator client {
 }
 
 datasource db {
-    provider     = "mysql"
+    provider     = "postgresql"
     url          = env("DATABASE_URL")
+    directUrl    = env("DIRECT_URL")
     relationMode = "prisma"
 }
 
@@ -70,15 +71,6 @@ model VerificationToken {
     @@map("verification_token")
 }
 
-model JobTag {
-    id        String       @id @default(cuid())
-    name      String       @unique
-    createdAt DateTime     @default(now())
-    Jobs      JobsOnTags[]
-
-    @@map("job_tag")
-}
-
 enum OriginSite {
     V2EX
     ELE_DUCK
@@ -90,7 +82,7 @@ model Job {
     originUrl        String
     originSite       OriginSite
     originTitle      String
-    originContent    String?     @db.Text
+    originContent    String?    @db.Text
     originCreateAt   DateTime?
     originUsername   String?
     originUserAvatar String?
@@ -98,25 +90,12 @@ model Job {
     invalid          Boolean    @default(false)
 
     title            String?
-    tags             JobsOnTags[]
-    generatedContent String?      @db.Text
+    tags             String[]
+    generatedContent String?   @db.Text
     generatedAt      DateTime?
 
     showCount Int @default(0)
 
     @@unique([originId, originSite])
     @@map("job")
-}
-
-model JobsOnTags {
-    job        Job      @relation(fields: [jobId], references: [id])
-    jobId      String
-    jobTag     JobTag   @relation(fields: [jobTagId], references: [id])
-    jobTagId   String
-    assignedAt DateTime @default(now())
-
-    @@id([jobId, jobTagId])
-    @@index([jobId])
-    @@index([jobTagId])
-    @@map("jobs_on_tags")
 }

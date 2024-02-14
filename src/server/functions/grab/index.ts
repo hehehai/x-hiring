@@ -25,7 +25,7 @@ const MAX_SYNC_CHECK = 500;
 
 const v2exDataCapture = async () => {
   try {
-    const latest100 = await db.job.findMany({
+    const latestSlice = await db.job.findMany({
       select: {
         id: true,
         originId: true,
@@ -36,13 +36,13 @@ const v2exDataCapture = async () => {
       orderBy: {
         originCreateAt: "desc",
       },
-      take: 100,
+      take: MAX_SYNC_CHECK,
     });
-    if (latest100.length === 0) {
+    if (latestSlice.length === 0) {
       // 第一次抓取
       console.log("第一次抓取");
     }
-    const savedOriginIds = latest100.map((item) => item.originId);
+    const savedOriginIds = latestSlice.map((item) => item.originId);
 
     let page = 1;
     const fetchArticles = new Map<string, V2EXArticle>();
@@ -140,20 +140,7 @@ const v2exDataCapture = async () => {
           originUsername: article.authorName,
           originUserAvatar: article.authorAvatar,
           title: analysis.title,
-          tags: {
-            create: filterAvailableTags(analysis.tags).map((tag) => ({
-              jobTag: {
-                connectOrCreate: {
-                  create: {
-                    name: tag,
-                  },
-                  where: {
-                    name: tag,
-                  },
-                },
-              },
-            })),
-          },
+          tags: filterAvailableTags(analysis.tags),
           generatedContent: analysis.content,
           generatedAt: new Date(),
         },
@@ -170,7 +157,7 @@ const v2exDataCapture = async () => {
 
 const eleDuckDataCapture = async () => {
   try {
-    const latest100 = await db.job.findMany({
+    const latestSlice = await db.job.findMany({
       select: {
         id: true,
         originId: true,
@@ -181,13 +168,13 @@ const eleDuckDataCapture = async () => {
       orderBy: {
         originCreateAt: "desc",
       },
-      take: 100,
+      take: MAX_SYNC_CHECK,
     });
-    if (latest100.length === 0) {
+    if (latestSlice.length === 0) {
       // 第一次抓取
       console.log("第一次抓取");
     }
-    const savedOriginIds = latest100.map((item) => item.originId);
+    const savedOriginIds = latestSlice.map((item) => item.originId);
 
     let page = 1;
     const fetchArticles = new Map<string, EleDuckArticle>();
@@ -285,20 +272,7 @@ const eleDuckDataCapture = async () => {
           originUsername: article.authorName,
           originUserAvatar: article.authorAvatar,
           title: analysis.title,
-          tags: {
-            create: filterAvailableTags(analysis.tags).map((tag) => ({
-              jobTag: {
-                connectOrCreate: {
-                  create: {
-                    name: tag,
-                  },
-                  where: {
-                    name: tag,
-                  },
-                },
-              },
-            })),
-          },
+          tags: filterAvailableTags(analysis.tags),
           generatedContent: analysis.content,
           generatedAt: new Date(),
         },

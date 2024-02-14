@@ -53,11 +53,7 @@ export const jobRouter = createTRPCRouter({
         // 标签查询
         if (tags.length) {
           withWhere.tags = {
-            some: {
-              jobTagId: {
-                in: tags,
-              },
-            },
+            hasSome: tags,
           };
         }
 
@@ -77,13 +73,6 @@ export const jobRouter = createTRPCRouter({
                 id: cursor,
               }
             : undefined,
-          include: {
-            tags: {
-              include: {
-                jobTag: true,
-              },
-            },
-          },
         });
         let nextCursor: typeof cursor | undefined = undefined;
         if (data.length > limit) {

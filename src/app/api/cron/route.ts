@@ -1,6 +1,7 @@
 import { grabAction } from "@/server/functions/grab";
 import { type NextRequest } from "next/server";
 
+export const maxDuration = 300; // 5min
 export const runtime = "nodejs";
 
 export async function GET(request: NextRequest) {

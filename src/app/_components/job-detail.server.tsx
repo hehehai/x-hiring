@@ -3,12 +3,12 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
-import { type JobItemHasTags } from "@/types/common";
+import { type Job } from "@prisma/client";
 import React from "react";
 import Markdown from "react-markdown";
 
 interface JobDetailServerProps extends React.ComponentPropsWithoutRef<"div"> {
-  data: JobItemHasTags;
+  data: Job;
 }
 
 export const JobDetail = ({ data, ...props }: JobDetailServerProps) => {
@@ -41,11 +41,11 @@ export const JobDetail = ({ data, ...props }: JobDetailServerProps) => {
         <div className="mt-4 flex flex-wrap items-center gap-3">
           {data.tags.map((tag) => (
             <Badge
-              key={tag.jobId}
+              key={tag}
               variant="outline"
-              className="max-w-60 px-4 py-1 md:text-sm font-medium text-gray-700"
+              className="max-w-60 px-4 py-1 font-medium text-gray-700 md:text-sm"
             >
-              <span className="truncate">{tag.jobTag.name}</span>
+              <span className="truncate">{tag}</span>
             </Badge>
           ))}
         </div>

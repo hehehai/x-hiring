@@ -44,11 +44,7 @@ export async function jobQuery(params: JobQueryParams) {
     // 标签查询
     if (tags.length) {
       withWhere.tags = {
-        some: {
-          jobTagId: {
-            in: tags,
-          },
-        },
+        hasSome: tags,
       };
     }
 
@@ -64,13 +60,6 @@ export async function jobQuery(params: JobQueryParams) {
       orderBy: withOrderBy,
       take: limit,
       skip: offset * limit,
-      include: {
-        tags: {
-          include: {
-            jobTag: true,
-          },
-        },
-      },
     });
 
     return data;
@@ -84,13 +73,6 @@ export async function jobDetail(id: string) {
   const data = await db.job.findUnique({
     where: {
       id,
-    },
-    include: {
-      tags: {
-        include: {
-          jobTag: true,
-        },
-      },
     },
   });
   if (data) {

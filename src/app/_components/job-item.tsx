@@ -1,19 +1,19 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { type JobItemHasTags } from "@/types/common";
 import { memo } from "react";
 import { JobItemWrapper } from "./job-item-wrapper";
 import { JobSiteTag } from "@/components/shared/job-site-tag";
+import { type Job } from "@prisma/client";
 
 interface JobItemProps {
-  data: JobItemHasTags;
+  data: Job;
 }
 
 export const JobItem = memo(({ data }: JobItemProps) => {
   return (
     <JobItemWrapper id={data.id}>
       <div className="flex space-x-3 md:w-[280px]">
-        <Avatar className="md:h-14 md:w-14 h-12 w-12 border border-zinc-100">
+        <Avatar className="h-12 w-12 border border-zinc-100 md:h-14 md:w-14">
           {data.originUserAvatar && <AvatarImage src={data.originUserAvatar} />}
           <AvatarFallback>
             {data.originUsername?.slice(0, 1).toLocaleUpperCase() || "?"}
@@ -37,11 +37,11 @@ export const JobItem = memo(({ data }: JobItemProps) => {
         <div className="mt-4 flex flex-wrap items-center gap-3">
           {data.tags.map((tag) => (
             <Badge
-              key={tag.jobId}
+              key={tag}
               variant="outline"
-              className="max-w-60 px-4 py-1 md:text-sm font-medium text-gray-700"
+              className="max-w-60 px-4 py-1 font-medium text-gray-700 md:text-sm"
             >
-              <span className="truncate">{tag.jobTag.name}</span>
+              <span className="truncate">{tag}</span>
             </Badge>
           ))}
         </div>
