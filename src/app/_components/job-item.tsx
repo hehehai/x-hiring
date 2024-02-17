@@ -4,6 +4,7 @@ import { memo } from "react";
 import { JobItemWrapper } from "./job-item-wrapper";
 import { JobSiteTag } from "@/components/shared/job-site-tag";
 import { type Job } from "@prisma/client";
+import { format } from "date-fns";
 
 interface JobItemProps {
   data: Job;
@@ -12,7 +13,7 @@ interface JobItemProps {
 export const JobItem = memo(({ data }: JobItemProps) => {
   return (
     <JobItemWrapper id={data.id}>
-      <div className="flex space-x-3 md:w-[280px]">
+      <div className="flex flex-shrink-0 space-x-3 md:w-[280px]">
         <Avatar className="h-12 w-12 border border-zinc-100 md:h-14 md:w-14">
           {data.originUserAvatar && <AvatarImage src={data.originUserAvatar} />}
           <AvatarFallback>
@@ -23,7 +24,9 @@ export const JobItem = memo(({ data }: JobItemProps) => {
           <div className="flex items-center justify-between">
             <JobSiteTag type={data.originSite} />
             <div className="text-sm text-gray-500 md:hidden">
-              {data.originCreateAt?.toLocaleString() || "未知"}
+              {data.originCreateAt
+                ? format(data.originCreateAt, "yyyy/MM/dd HH:mm")
+                : "未知"}
             </div>
           </div>
           <div className="text-md truncate">{data.originUsername}</div>

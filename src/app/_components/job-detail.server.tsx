@@ -4,14 +4,15 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { type Job } from "@prisma/client";
-import React from "react";
+import { format } from "date-fns";
+import React, { memo } from "react";
 import Markdown from "react-markdown";
 
 interface JobDetailServerProps extends React.ComponentPropsWithoutRef<"div"> {
   data: Job;
 }
 
-export const JobDetail = ({ data, ...props }: JobDetailServerProps) => {
+export const JobDetail = memo(({ data, ...props }: JobDetailServerProps) => {
   return (
     <div
       {...props}
@@ -34,7 +35,9 @@ export const JobDetail = ({ data, ...props }: JobDetailServerProps) => {
             </div>
           </div>
           <div className="text-sm text-gray-500">
-            {data.originCreateAt?.toLocaleString() || "未知"}
+            {data.originCreateAt
+              ? format(data.originCreateAt, "yyyy/MM/dd HH:mm")
+              : "未知"}
           </div>
         </div>
         <div className="text-2xl">{data.title}</div>
@@ -56,4 +59,6 @@ export const JobDetail = ({ data, ...props }: JobDetailServerProps) => {
       </article>
     </div>
   );
-};
+});
+
+JobDetail.displayName = "JobDetail";

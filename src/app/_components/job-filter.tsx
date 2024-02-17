@@ -3,6 +3,7 @@
 import { DatePickerWithRange } from "@/components/shared/date-picker-with-range";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+import { addDays } from "date-fns";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useMemo } from "react";
 
@@ -96,7 +97,9 @@ export const JobFilter = ({
           }
           updateQueryParams({ dateRange: range });
         }}
-        disabled={[{ from: new Date(), to: new Date("2224-01-01") }]}
+        disabled={[
+          { from: addDays(new Date(), 1), to: new Date("2224-01-01") },
+        ]}
       />
       <div className="flex h-10 min-w-[240px] items-center gap-1 rounded-xl border border-input p-1">
         {sortMap.map((sortType) => (

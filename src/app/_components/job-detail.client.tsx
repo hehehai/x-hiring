@@ -16,7 +16,7 @@ interface JobDetailClientProps {
 export const JobDetailClient = memo(({ id, onClose }: JobDetailClientProps) => {
   const { data, isFetching } = api.job.detail.useQuery(
     { id },
-    { refetchOnWindowFocus: false},
+    { refetchOnWindowFocus: false },
   );
 
   return (
@@ -51,7 +51,7 @@ export const JobDetailClient = memo(({ id, onClose }: JobDetailClientProps) => {
           <JobDetail data={data}></JobDetail>
         </div>
       ) : (
-        <div>ERROR</div>
+        <div>异常</div>
       )}
     </>
   );

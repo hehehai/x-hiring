@@ -35,7 +35,7 @@ export async function jobQuery(params: JobQueryParams) {
     // 日期查询
     if (dateRange.length) {
       const [start, end] = dateRange;
-      withWhere.syncAt = {
+      withWhere.originCreateAt = {
         gte: start,
         lte: end,
       };
