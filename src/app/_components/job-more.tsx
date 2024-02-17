@@ -35,6 +35,7 @@ export const JobMore = memo(
           tags,
         },
         {
+          refetchOnWindowFocus: false,
           initialCursor: cursor,
           getNextPageParam(lastPage) {
             if (lastPage.nextCursor) {
