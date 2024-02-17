@@ -6,16 +6,17 @@ import { Separator } from "@/components/ui/separator";
 import { api } from "@/trpc/react";
 import Link from "next/link";
 import { JobDetail } from "./job-detail.server";
+import { memo } from "react";
 
 interface JobDetailClientProps {
   id: string;
   onClose: () => void;
 }
 
-export const JobDetailClient = ({ id, onClose }: JobDetailClientProps) => {
+export const JobDetailClient = memo(({ id, onClose }: JobDetailClientProps) => {
   const { data, isFetching } = api.job.detail.useQuery(
     { id },
-    { refetchOnWindowFocus: false },
+    { refetchOnWindowFocus: false},
   );
 
   return (
@@ -54,4 +55,6 @@ export const JobDetailClient = ({ id, onClose }: JobDetailClientProps) => {
       )}
     </>
   );
-};
+});
+
+JobDetailClient.displayName = "JobDetailClient";
