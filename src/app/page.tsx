@@ -2,14 +2,21 @@ import { z } from "zod";
 import { Header } from "./_components/header";
 import { JobMain } from "./_components/job-main";
 
+export const revalidate = 60 * 60 * 2; // 2h
+
 const SearchParamsSchema = z.object({
   s: z.string().max(256).optional().default(""),
-  dateRange: z.string().max(256).optional().default("").transform((str) => {
-    if (str === "") {
-      return undefined;
-    }
-    return str.split(",") ?? [];
-  }),
+  dateRange: z
+    .string()
+    .max(256)
+    .optional()
+    .default("")
+    .transform((str) => {
+      if (str === "") {
+        return undefined;
+      }
+      return str.split(",") ?? [];
+    }),
   type: z.enum(["news", "trending"]).optional().default("news"),
   tags: z.string().max(356).optional().default(""),
 });
