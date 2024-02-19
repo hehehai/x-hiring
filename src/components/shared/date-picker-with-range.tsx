@@ -14,6 +14,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { DateLineIcon } from "./icons";
 
 interface DatePickerWithRangeProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {
@@ -41,11 +42,11 @@ export function DatePickerWithRange(props: DatePickerWithRangeProps) {
             id="date"
             variant={"outline"}
             className={cn(
-              "min-w-[240px] justify-start text-left font-normal",
-              !date && "text-muted-foreground",
+              "text-md min-w-[270px] justify-start text-left font-normal",
+              !date && "text-secondary-foreground",
             )}
           >
-            <CalendarIcon className="mr-2 h-4 w-4" />
+            <DateLineIcon className="mr-2 text-xl" />
             <div className="space-x-2">
               {date?.from ? (
                 date.to ? (
@@ -58,7 +59,7 @@ export function DatePickerWithRange(props: DatePickerWithRangeProps) {
                   <span>{format(date.from, "yyyy/MM/dd")}</span>
                 )
               ) : (
-                <span className="text-muted-foreground">
+                <span className="text-secondary-foreground">
                   {props.placeholder ?? "Pick a date"}
                 </span>
               )}

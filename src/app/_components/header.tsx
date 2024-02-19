@@ -1,3 +1,5 @@
+import { Logo } from "@/components/shared/logo";
+
 const HeaderLink = ({
   link,
   children,
@@ -18,9 +20,9 @@ const HeaderLink = ({
 
 export const Header = () => {
   return (
-    <header className="px-4 pt-10 md:px-8 md:pt-20">
-      <div className="mb-8 text-3xl font-semibold md:mb-12 md:text-6xl">
-        X-Hiring
+    <header className="px-4 pt-6 md:px-8 md:pt-10">
+      <div className="mb-3 text-3xl font-semibold md:mb-6 md:text-5xl">
+        <Logo />
       </div>
       <ul className="min-h-24 space-y-1 rounded-xl bg-orange-500 p-4 text-white md:w-4/6">
         <li>

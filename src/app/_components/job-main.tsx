@@ -15,7 +15,7 @@ export const JobMain = memo(
     );
 
     return (
-      <main className="mt-14">
+      <main className="mt-12">
         <div className="px-4 md:px-8">
           <JobFilter s={s} dateRange={dateRange} type={type} tags={tagsArray} />
         </div>

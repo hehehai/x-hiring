@@ -1,6 +1,7 @@
 "use client";
 
 import { DatePickerWithRange } from "@/components/shared/date-picker-with-range";
+import { SearchLineIcon } from "@/components/shared/icons";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { addDays, addYears } from "date-fns";
@@ -73,7 +74,7 @@ export const JobFilter = ({
         <Input
           defaultValue={s}
           placeholder="搜索招聘信息"
-          className="pl-9"
+          className="pl-10"
           onChange={(e) => {
             if (e.target.value !== s) {
               updateQueryParams({ s: e.target.value });
@@ -81,7 +82,7 @@ export const JobFilter = ({
           }}
         />
         <div className="absolute left-3 top-1/2 flex -translate-y-1/2 items-center justify-center">
-          <span className="i-lucide-search"></span>
+          <SearchLineIcon className="text-xl" />
         </div>
       </div>
       <DatePickerWithRange

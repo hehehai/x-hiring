@@ -4,22 +4,19 @@ import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { type Metadata } from "next";
-import { jobDetail } from "@/server/functions/job/query";
-import { db } from "@/server/db";
+import { api } from "@/trpc/server";
+import { Logo } from "@/components/shared/logo";
 
-type Props = {
+export const revalidate = 7200; // 2h
+
+type DetailProps = {
   params: { id: string };
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const detail = await db.job.findUnique({
-    select: {
-      title: true,
-    },
-    where: {
-      id: params.id,
-    },
-  });
+export async function generateMetadata({
+  params,
+}: DetailProps): Promise<Metadata> {
+  const detail = await api.job.detail.query(params, {});
 
   if (!detail) {
     return {
@@ -32,8 +29,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function JobDetailPage({ params }: Props) {
-  const detail = await jobDetail(params.id);
+export default async function JobDetailPage({ params }: DetailProps) {
+  const detail = await api.job.detail.query(params);
   if (!detail) {
     return notFound();
   }
@@ -41,7 +38,7 @@ export default async function JobDetailPage({ params }: Props) {
     <div className="mx-auto w-full max-w-3xl py-8 max-md:px-4">
       <div className="flex items-center justify-between pb-6">
         <Link href={`/`} className="text-2xl font-bold">
-          X-Hiring
+          <Logo />
         </Link>
         <div className="flex items-center space-x-3">
           {detail?.originUrl ? (
