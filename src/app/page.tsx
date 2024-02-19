@@ -2,8 +2,6 @@ import { z } from "zod";
 import { Header } from "./_components/header";
 import { JobMain } from "./_components/job-main";
 
-export const revalidate = 7200; // 2h
-
 const SearchParamsSchema = z.object({
   s: z.string().max(256).optional().default(""),
   dateRange: z

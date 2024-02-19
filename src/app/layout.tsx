@@ -8,6 +8,8 @@ import Head from "next/head";
 import Script from "next/script";
 import { type Metadata } from "next";
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: {
     default: "X-Hiring",

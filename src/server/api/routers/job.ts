@@ -94,7 +94,6 @@ export const jobRouter = createTRPCRouter({
   detail: publicProcedure
     .input(z.object({ id: z.string() }))
     .query(async ({ input }) => {
-      console.log("job detail", input.id);
       return jobDetail(input.id);
     }),
 });

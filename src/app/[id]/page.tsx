@@ -7,8 +7,6 @@ import { type Metadata } from "next";
 import { api } from "@/trpc/server";
 import { Logo } from "@/components/shared/logo";
 
-export const revalidate = 7200; // 2h
-
 type DetailProps = {
   params: { id: string };
 };
