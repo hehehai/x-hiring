@@ -2,7 +2,6 @@ import "@/styles/globals.css";
 
 import { TRPCReactProvider } from "@/trpc/react";
 
-import "@/lib/with-proxy";
 import { cn } from "@/lib/utils";
 import Head from "next/head";
 import Script from "next/script";

@@ -4,8 +4,12 @@ import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { type Metadata } from "next";
-import { api } from "@/trpc/server";
 import { Logo } from "@/components/shared/logo";
+import { jobDetail } from "@/server/functions/job/query";
+import { Suspense } from "react";
+import { Spinners } from "@/components/shared/icons";
+
+export const revalidate = 7200;
 
 type DetailProps = {
   params: { id: string };
@@ -14,7 +18,7 @@ type DetailProps = {
 export async function generateMetadata({
   params,
 }: DetailProps): Promise<Metadata> {
-  const detail = await api.job.detail.query(params, {});
+  const detail = await jobDetail(params.id);
 
   if (!detail) {
     return {
@@ -28,7 +32,7 @@ export async function generateMetadata({
 }
 
 export default async function JobDetailPage({ params }: DetailProps) {
-  const detail = await api.job.detail.query(params);
+  const detail = await jobDetail(params.id);
   if (!detail) {
     return notFound();
   }
@@ -54,7 +58,15 @@ export default async function JobDetailPage({ params }: DetailProps) {
         </div>
       </div>
       <Separator />
-      <JobDetail data={detail} className="max-w-full"></JobDetail>
+      <Suspense
+        fallback={
+          <div className="flex h-full min-h-96 w-full items-center justify-center text-3xl">
+            <Spinners />
+          </div>
+        }
+      >
+        <JobDetail data={detail} className="max-w-full" />
+      </Suspense>
     </div>
   );
 }
