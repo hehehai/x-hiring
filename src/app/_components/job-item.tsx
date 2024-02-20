@@ -34,7 +34,9 @@ export const JobItem = memo(({ data }: JobItemProps) => {
       </div>
       <div>
         <div className="mb-3 text-sm text-gray-500 max-md:hidden">
-          {data.originCreateAt?.toLocaleString() || "未知"}
+          {data.originCreateAt
+            ? format(data.originCreateAt, "yyyy/MM/dd HH:mm")
+            : "未知"}
         </div>
         <div className="text-xl md:text-2xl">{data.title}</div>
         <div className="mt-4 flex flex-wrap items-center gap-3">
