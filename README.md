@@ -13,8 +13,8 @@
 配置环境变量。 在根目录创建 `.env` 文件(参考 `.env.example`)， 之后复制下面内容
 
 ```txt
-# Prisma mysql 数据库
-DATABASE_URL="mysql://x-hiring:password@00.00.00.00:3306/x-hiring"
+# Prisma postgresql 数据库
+DATABASE_URL="postgresql://x-hiring:password@0.0.0.0:5432/x-hiring"
 
 # Next Auth
 # You can generate a new secret on the command line with:
