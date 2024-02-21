@@ -8,6 +8,9 @@ import { Logo } from "@/components/shared/logo";
 import { jobDetail } from "@/server/functions/job/query";
 import { Suspense } from "react";
 import { Spinners } from "@/components/shared/icons";
+import { cache } from "react";
+
+const getDetail = cache(jobDetail);
 
 export const revalidate = 7200;
 
@@ -18,7 +21,7 @@ type DetailProps = {
 export async function generateMetadata({
   params,
 }: DetailProps): Promise<Metadata> {
-  const detail = await jobDetail(params.id);
+  const detail = await getDetail(params.id);
 
   if (!detail) {
     return {
@@ -32,7 +35,7 @@ export async function generateMetadata({
 }
 
 export default async function JobDetailPage({ params }: DetailProps) {
-  const detail = await jobDetail(params.id);
+  const detail = await getDetail(params.id);
   if (!detail) {
     return notFound();
   }

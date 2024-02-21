@@ -47,7 +47,7 @@ export const JobDetailClient = memo(({ id, onClose }: JobDetailClientProps) => {
           <Spinners></Spinners>
         </div>
       ) : data ? (
-        <div className="w-full flex-grow overflow-y-auto" data-vaul-no-drag>
+        <div className="w-full flex-grow overflow-y-auto">
           <JobDetail data={data}></JobDetail>
         </div>
       ) : (
