@@ -10,6 +10,8 @@
 
 ## ⌨️ 安装&运行
 
+> 数据抓取为独立服务， [x-hiring grab]（<https://github.com/hehehai/x-hiring-grab>>
+
 配置环境变量。 在根目录创建 `.env` 文件(参考 `.env.example`)， 之后复制下面内容
 
 ```txt
@@ -35,19 +37,3 @@ npm run dev
 ```
 
 打开 `http://localhost:3000`
-
-## TODO
-
-- 支持 next-auth (支持 github, magic email)
-- 支持 dark
-- 支持用户管理（增删改查）
-- 创建我的简历
-- 创建企业
-- 添加企业成员
-- 创建招聘/发布招聘
-- 招聘岗位申请
-- 招聘申请管理
-- 我的申请(当收到回复后，可查看邮箱，发送信息)
-- 企业管理
-- 成员管理（招聘权限管理）
-- 招聘信息统计

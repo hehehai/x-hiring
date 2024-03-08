@@ -6,9 +6,24 @@ import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { useAtom } from "jotai";
 import { activeAtom } from "../_store/job-view.store";
 import { JobDetailClient } from "./job-detail.client";
+import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
 export function JobViewDrawer() {
+  const searchParams = useSearchParams();
   const [activeId, setActiveId] = useAtom(activeAtom);
+
+  useEffect(() => {
+    if (activeId) {
+      window.history.pushState(
+        {},
+        "",
+        `/${activeId}?${searchParams.toString()}`,
+      );
+    } else {
+      window.history.pushState({}, "", `/?${searchParams.toString()}`);
+    }
+  }, [activeId]);
 
   return (
     <Sheet
