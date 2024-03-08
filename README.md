@@ -4,7 +4,8 @@
 🤗 每日最新招聘信息，使用 Google AI 提取摘要
 <br/>
 
-![image](https://github.com/hehehai/h-blog/assets/12692552/ae50f16c-a61a-4c3d-a8fa-63b5912818b2)
+![image](https://github.com/hehehai/h-blog/assets/12692552/9853bc8b-9988-4bc4-8075-88c3a35147a2)
+![image](https://github.com/hehehai/h-blog/assets/12692552/6d83d836-2134-4c83-bd9b-d51702978bfe)
 
 </div>
 
