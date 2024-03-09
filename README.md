@@ -11,7 +11,7 @@
 
 ## ⌨️ 安装&运行
 
-> 数据抓取为独立服务， [x-hiring grab]（<https://github.com/hehehai/x-hiring-grab>>
+> 数据抓取为独立服务， [x-hiring grab](https://github.com/hehehai/x-hiring-grab)
 
 配置环境变量。 在根目录创建 `.env` 文件(参考 `.env.example`)， 之后复制下面内容
 
