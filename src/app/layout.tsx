@@ -4,17 +4,18 @@ import { TRPCReactProvider } from "@/trpc/react";
 
 import { cn } from "@/lib/utils";
 import Head from "next/head";
-import Script from "next/script";
 import { type Metadata } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://x-hiring.hehehai.cn"),
   title: {
     default: "X-Hiring",
     template: "%s | X-Hiring",
   },
-  description: "每日最新招聘信息，使用 Google AI 提取摘要",
+  description: "每日最新招聘信息， 使用 Google AI 提取摘要",
   keywords: [
     "招聘",
     "程序员招聘",
@@ -41,16 +42,10 @@ export default function RootLayout({
           href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Regular.min.css"
         />
       </Head>
-      <Script id="ms_clarity" strategy="afterInteractive">
-        {`(function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-          })(window, document, "clarity", "script", "kzm7tmjkn1");`}
-      </Script>
       <body className={cn("min-h-screen bg-background font-sans antialiased")}>
         <TRPCReactProvider>{children}</TRPCReactProvider>
       </body>
+      <GoogleAnalytics gaId="G-TZXQXXK3C2" />
     </html>
   );
 }
