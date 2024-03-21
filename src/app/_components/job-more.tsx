@@ -53,7 +53,7 @@ export const JobMore = memo(
         {data?.pages.map((group, i) => (
           <React.Fragment key={i}>
             {group.data.map((job) => (
-              <JobItem key={job.id} data={job} />
+              <JobItem key={job.id} data={job} s={s} />
             ))}
           </React.Fragment>
         ))}

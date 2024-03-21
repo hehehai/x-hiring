@@ -52,8 +52,14 @@
 @layer base {
   * {
     @apply border-border;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+
+  mark {
+    @apply bg-orange-200;
   }
 }
