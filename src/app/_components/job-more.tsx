@@ -8,21 +8,14 @@ import { useEffect, useRef } from "react";
 import { JobItem } from "./job-item";
 
 interface JobMoreProps {
-  s?: string;
+  s?: string[];
   dateRange?: string[];
   type?: "news" | "trending";
-  tags?: string[];
   cursor: string;
 }
 
 export const JobMore = memo(
-  ({
-    s = "",
-    dateRange = [],
-    type = "news",
-    tags = [],
-    cursor,
-  }: JobMoreProps) => {
+  ({ s = [], dateRange = [], type = "news", cursor }: JobMoreProps) => {
     const bottomTriggerRef = useRef(null);
     const inView = useIntersectionObserver(bottomTriggerRef);
 
@@ -32,7 +25,6 @@ export const JobMore = memo(
           s,
           dateRange,
           type,
-          tags,
         },
         {
           refetchOnWindowFocus: false,
@@ -65,7 +57,7 @@ export const JobMore = memo(
             ))}
           </React.Fragment>
         ))}
-        {(cursor || hasNextPage) && (
+        {cursor && hasNextPage ? (
           <div
             ref={bottomTriggerRef}
             className="col-span-5 lg:col-span-3 2xl:col-span-4"
@@ -74,6 +66,8 @@ export const JobMore = memo(
               <Spinners />
             </div>
           </div>
+        ) : (
+          <div className="py-6 text-center">没有更多</div>
         )}
       </>
     );

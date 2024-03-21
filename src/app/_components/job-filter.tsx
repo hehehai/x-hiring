@@ -1,8 +1,7 @@
 "use client";
 
+import { ComboOptionInput } from "@/components/shared/combo-option-input";
 import { DatePickerWithRange } from "@/components/shared/date-picker-with-range";
-import { SearchLineIcon } from "@/components/shared/icons";
-import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { addDays, addYears } from "date-fns";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -20,18 +19,12 @@ const sortMap = [
 ];
 
 interface JobFilterProps {
-  s?: string;
+  s?: string[];
   dateRange?: string[];
   type?: string;
-  tags?: string[];
 }
 
-export const JobFilter = ({
-  s = "",
-  dateRange,
-  type,
-  tags,
-}: JobFilterProps) => {
+export const JobFilter = ({ s = [], dateRange, type }: JobFilterProps) => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -48,7 +41,7 @@ export const JobFilter = ({
       const params = new URLSearchParams(searchParams.toString());
 
       if (data.s != null) {
-        params.set("s", data.s);
+        params.set("s", data.s.join(","));
       }
       if (data.dateRange != null) {
         params.set(
@@ -59,9 +52,6 @@ export const JobFilter = ({
       if (data.type != null) {
         params.set("type", data.type);
       }
-      if (data.tags != null) {
-        params.set("tags", data.tags.join(","));
-      }
       console.log("updateQueryParams", params.toString());
       router.replace(`/?${params.toString()}`);
     },
@@ -71,19 +61,10 @@ export const JobFilter = ({
   return (
     <div className="w-full items-center max-md:space-y-3 md:flex md:space-x-2">
       <div className="relative flex-grow">
-        <Input
-          defaultValue={s}
-          placeholder="搜索招聘信息"
-          className="pl-10"
-          onChange={(e) => {
-            if (e.target.value !== s) {
-              updateQueryParams({ s: e.target.value });
-            }
-          }}
+        <ComboOptionInput
+          initValue={s}
+          onChange={(val) => updateQueryParams({ s: val })}
         />
-        <div className="absolute left-3 top-1/2 flex -translate-y-1/2 items-center justify-center">
-          <SearchLineIcon className="text-xl" />
-        </div>
       </div>
       <DatePickerWithRange
         placeholder="日期范围"

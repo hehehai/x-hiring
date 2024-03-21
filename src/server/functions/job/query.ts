@@ -2,10 +2,9 @@ import { db } from "@/server/db";
 import { type Prisma } from "@prisma/client";
 
 interface JobQueryParams {
-  s?: string;
+  s?: string[];
   dateRange?: string[];
   type?: string;
-  tags?: string[];
   limit?: number;
   offset?: number;
 }
@@ -14,10 +13,9 @@ export async function jobQuery(params: JobQueryParams) {
   "use server";
 
   const {
-    s = "",
+    s = [],
     dateRange = [],
     type = "news",
-    tags = [],
     limit = 10,
     offset = 0,
   } = params;
@@ -26,29 +24,26 @@ export async function jobQuery(params: JobQueryParams) {
     const withWhere: Prisma.JobWhereInput = {
       invalid: false,
     };
-    // 标题查询
-    if (s) {
-      withWhere.title = {
-        contains: s,
-      };
+    // 关键词
+    if (s.length) {
+      withWhere.AND = s.map((item) => ({
+        title: {
+          mode: "insensitive",
+          contains: item,
+        },
+      }));
     }
     // 日期查询
     if (dateRange.length) {
       const [start, end] = dateRange;
-      withWhere.originCreateAt = {
+      withWhere.syncAt = {
         gte: start,
         lte: end,
       };
     }
 
-    // 标签查询
-    if (tags.length) {
-      withWhere.tags = {
-        hasSome: tags,
-      };
-    }
-
-    const withOrderBy: Prisma.JobOrderByWithRelationInput = {};
+    const withOrderBy: Prisma.JobOrderByWithRelationInput =
+      {};
     if (type === "news") {
       withOrderBy.originCreateAt = "desc";
     } else if (type === "trending") {

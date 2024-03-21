@@ -9,37 +9,35 @@ export const jobRouter = createTRPCRouter({
   queryWithCursor: publicProcedure
     .input(
       z.object({
-        s: z.string().max(256).optional().default(""),
+        s: z
+          .array(z.string())
+          .max(20, { message: "最多 20 个" })
+          .optional()
+          .default([])
+          .transform((value) =>
+            value.map((item) => item.trim()).filter(Boolean),
+          ),
         dateRange: z.array(z.string()).max(2).optional().default([]),
         type: z.enum(["news", "trending"]).optional().default("news"),
-        tags: z
-          .array(z.string())
-          .max(12, { message: "最多 12 个" })
-          .optional()
-          .default([]),
         limit: z.number().min(1).max(50).optional().default(10),
         cursor: z.string().optional(),
       }),
     )
     .query(async ({ input }) => {
-      const {
-        s = "",
-        dateRange = [],
-        type = "news",
-        tags = [],
-        limit,
-        cursor,
-      } = input;
+      const { s = [], dateRange = [], type = "news", limit, cursor } = input;
 
       try {
         const withWhere: Prisma.JobWhereInput = {
           invalid: false,
         };
-        // 标题查询
-        if (s) {
-          withWhere.title = {
-            contains: s,
-          };
+        // 关键词
+        if (s.length) {
+          withWhere.AND = s.map((item) => ({
+            title: {
+              mode: "insensitive",
+              contains: item,
+            },
+          }));
         }
         // 日期查询
         if (dateRange.length) {
@@ -47,13 +45,6 @@ export const jobRouter = createTRPCRouter({
           withWhere.syncAt = {
             gte: start,
             lte: end,
-          };
-        }
-
-        // 标签查询
-        if (tags.length) {
-          withWhere.tags = {
-            hasSome: tags,
           };
         }
 

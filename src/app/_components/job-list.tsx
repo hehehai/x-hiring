@@ -4,24 +4,21 @@ import { JobMore } from "./job-more";
 import { useId } from "react";
 
 interface JobListProps {
-  s?: string;
+  s?: string[];
   dateRange?: string[];
   type?: "news" | "trending";
-  tags?: string[];
 }
 
 export const JobList = async ({
-  s = "",
+  s = [],
   dateRange,
   type = "news",
-  tags,
 }: JobListProps) => {
   const id = useId();
   const firstSlice = await jobQuery({
     s,
     dateRange,
     type,
-    tags,
     limit: 11,
   });
   const nextCursor = firstSlice.length > 10 ? firstSlice.pop() : undefined;
@@ -41,7 +38,6 @@ export const JobList = async ({
           s={s}
           dateRange={dateRange}
           type={type}
-          tags={tags}
           cursor={nextCursor.id}
         />
       )}
