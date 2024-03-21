@@ -4,13 +4,19 @@ import { memo } from "react";
 import { JobItemWrapper } from "./job-item-wrapper";
 import { JobSiteTag } from "@/components/shared/job-site-tag";
 import { type Job } from "@prisma/client";
-import { format } from "date-fns";
+import { formatPosDate } from "@/lib/utils";
+import Highlighter from 'react-highlight-words';
 
 interface JobItemProps {
+  s?: string[];
   data: Job;
 }
 
-export const JobItem = memo(({ data }: JobItemProps) => {
+export const JobItem = memo(({ s, data }: JobItemProps) => {
+  const publishDate = data.originCreateAt
+    ? `${formatPosDate(data.originCreateAt)} 发布`
+    : "未知";
+
   return (
     <JobItemWrapper id={data.id}>
       <div className="flex flex-shrink-0 space-x-3 md:w-[280px]">
@@ -23,22 +29,26 @@ export const JobItem = memo(({ data }: JobItemProps) => {
         <div className="space-y-1 max-md:flex-grow md:max-w-36 md:space-y-3">
           <div className="flex items-center justify-between">
             <JobSiteTag type={data.originSite} />
-            <div className="text-sm text-gray-500 md:hidden">
-              {data.originCreateAt
-                ? format(data.originCreateAt, "yyyy/MM/dd HH:mm")
-                : "未知"}
-            </div>
+            <div className="text-sm text-gray-500 md:hidden">{publishDate}</div>
           </div>
           <div className="text-md truncate">{data.originUsername}</div>
         </div>
       </div>
       <div>
         <div className="mb-3 text-sm text-gray-500 max-md:hidden">
-          {data.originCreateAt
-            ? format(data.originCreateAt, "yyyy/MM/dd HH:mm")
-            : "未知"}
+          {publishDate}
         </div>
-        <div className="text-xl md:text-2xl">{data.title}</div>
+        <div className="text-xl md:text-2xl">
+          {s?.length ? (
+            <Highlighter
+              searchWords={s}
+              autoEscape={true}
+              textToHighlight={data.title ?? ''}
+            />
+          ) : (
+            data.title
+          )}
+        </div>
         <div className="mt-4 flex flex-wrap items-center gap-3">
           {data.tags.map((tag) => (
             <Badge

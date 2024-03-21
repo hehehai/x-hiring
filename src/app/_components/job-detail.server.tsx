@@ -2,7 +2,7 @@ import { JobSiteTag } from "@/components/shared/job-site-tag";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { cn } from "@/lib/utils";
+import { cn, formatPosDate } from "@/lib/utils";
 import { type Job } from "@prisma/client";
 import { format } from "date-fns";
 import React, { memo } from "react";
@@ -36,7 +36,7 @@ export const JobDetail = memo(({ data, ...props }: JobDetailServerProps) => {
           </div>
           <div className="text-sm text-gray-500">
             {data.originCreateAt
-              ? format(data.originCreateAt, "yyyy/MM/dd HH:mm")
+              ? `${formatPosDate(data.originCreateAt)} 发布`
               : "未知"}
           </div>
         </div>

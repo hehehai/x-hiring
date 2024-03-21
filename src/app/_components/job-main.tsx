@@ -8,16 +8,11 @@ import { JobViewDrawer } from "./job-view-drawer";
 type JobMainProps = SearchParamsType;
 
 export const JobMain = memo(
-  ({ s = "", dateRange, type = "news", tags }: JobMainProps) => {
-    const tagsArray = useMemo(
-      () => tags?.split(",").filter(Boolean) || [],
-      [tags],
-    );
-
+  ({ s = [], dateRange, type = "news" }: JobMainProps) => {
     return (
       <main className="mt-12">
         <div className="px-4 md:px-8">
-          <JobFilter s={s} dateRange={dateRange} type={type} tags={tagsArray} />
+          <JobFilter s={s} dateRange={dateRange} type={type} />
         </div>
         <div className="mt-12 border-t border-zinc-100">
           <Suspense
@@ -27,7 +22,7 @@ export const JobMain = memo(
               </div>
             }
           >
-            <JobList s={s} dateRange={dateRange} type={type} tags={tagsArray} />
+            <JobList s={s} dateRange={dateRange} type={type} />
           </Suspense>
         </div>
         <Suspense fallback={null}>
