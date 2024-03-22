@@ -19,7 +19,7 @@ export const JobMore = memo(
     const bottomTriggerRef = useRef(null);
     const inView = useIntersectionObserver(bottomTriggerRef);
 
-    const { data, error, fetchNextPage, hasNextPage } =
+    const { data, error, fetchNextPage, hasNextPage, isFetching } =
       api.job.queryWithCursor.useInfiniteQuery(
         {
           s,
@@ -57,7 +57,7 @@ export const JobMore = memo(
             ))}
           </React.Fragment>
         ))}
-        {cursor && hasNextPage ? (
+        {cursor || hasNextPage || isFetching ? (
           <div
             ref={bottomTriggerRef}
             className="col-span-5 lg:col-span-3 2xl:col-span-4"

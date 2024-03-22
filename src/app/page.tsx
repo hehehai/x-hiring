@@ -1,8 +1,11 @@
 import { z } from "zod";
 import { Header } from "./_components/header";
-import { JobMain } from "./_components/job-main";
-
-export const revalidate = 3600;
+import { JobFilter } from "./_components/job-filter";
+import { Suspense } from "react";
+import { Spinners } from "@/components/shared/icons";
+import { JobList } from "./_components/job-list";
+import { JobViewDrawer } from "./_components/job-view-drawer";
+import { jobQuery } from "@/server/functions/job/query";
 
 const SearchParamsSchema = z.object({
   s: z
@@ -36,10 +39,42 @@ export default async function HomePage({
     return <p>Bad request</p>;
   }
 
+  const { s, dateRange, type } = query.data;
+
+  const firstSlice = await jobQuery({
+    s,
+    dateRange,
+    type,
+    limit: 11,
+  });
+
   return (
     <div className="mx-auto min-h-screen min-w-0 max-w-6xl border-x border-zinc-100">
       <Header />
-      <JobMain {...query.data}></JobMain>
+      <main className="mt-12">
+        <div className="px-4 md:px-8">
+          <JobFilter s={s} dateRange={dateRange} type={type} />
+        </div>
+        <div className="mt-12 border-t border-zinc-100">
+          <Suspense
+            fallback={
+              <div className="flex h-full min-h-96 w-full items-center justify-center text-3xl">
+                <Spinners />
+              </div>
+            }
+          >
+            <JobList
+              s={s}
+              dateRange={dateRange}
+              type={type}
+              firstSlice={firstSlice}
+            />
+          </Suspense>
+        </div>
+        <Suspense fallback={null}>
+          <JobViewDrawer />
+        </Suspense>
+      </main>
     </div>
   );
 }

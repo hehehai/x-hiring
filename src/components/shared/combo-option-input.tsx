@@ -133,7 +133,7 @@ export function ComboOptionInput({
               setInputLock(false);
             }}
             placeholder="搜索招聘信息，支持空格分隔多词条搜索"
-            className="ml-2 flex-1 bg-transparent outline-none placeholder:text-muted-foreground"
+            className="placeholder:text-md text-base ml-2 flex-1 bg-transparent outline-none placeholder:text-secondary-foreground"
           />
         </div>
       </div>

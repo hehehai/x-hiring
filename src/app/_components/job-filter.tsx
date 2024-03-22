@@ -52,7 +52,6 @@ export const JobFilter = ({ s = [], dateRange, type }: JobFilterProps) => {
       if (data.type != null) {
         params.set("type", data.type);
       }
-      console.log("updateQueryParams", params.toString());
       router.replace(`/?${params.toString()}`);
     },
     [router, searchParams],

@@ -29,25 +29,6 @@ const handler = (req: NextRequest) =>
             );
           }
         : undefined,
-    responseMeta(opts) {
-      const { paths, errors, type } = opts;
-      // assuming you have all your public routes with the keyword `public` in them
-      const allPublic = paths && paths.every((path) => path.includes("public"));
-      // checking that no procedures errored
-      const allOk = errors.length === 0;
-      // checking we're doing a query request
-      const isQuery = type === "query";
-      if (allPublic && allOk && isQuery) {
-        // cache request for 1 day + revalidate once every second
-        const ONE_DAY_IN_SECONDS = 60 * 60 * 24;
-        return {
-          headers: {
-            "cache-control": `s-maxage=1, stale-while-revalidate=${ONE_DAY_IN_SECONDS}`,
-          },
-        };
-      }
-      return {};
-    },
   });
 
 export { handler as GET, handler as POST };

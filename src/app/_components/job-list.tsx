@@ -1,26 +1,22 @@
-import { jobQuery } from "@/server/functions/job/query";
 import { JobItem } from "./job-item";
 import { JobMore } from "./job-more";
 import { useId } from "react";
+import { type Job } from "@prisma/client";
 
 interface JobListProps {
   s?: string[];
   dateRange?: string[];
   type?: "news" | "trending";
+  firstSlice: Job[];
 }
 
 export const JobList = async ({
   s = [],
   dateRange,
   type = "news",
+  firstSlice = [],
 }: JobListProps) => {
   const id = useId();
-  const firstSlice = await jobQuery({
-    s,
-    dateRange,
-    type,
-    limit: 11,
-  });
   const nextCursor = firstSlice.length > 10 ? firstSlice.pop() : undefined;
 
   return (
