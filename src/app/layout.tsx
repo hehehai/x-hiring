@@ -26,6 +26,20 @@ export const metadata: Metadata = {
     "远程兼职",
   ],
   icons: [{ rel: "icon", url: "/favicon.svg", type: "image/svg+xml" }],
+  authors: [{ name: "X-Hiring", url: "https://x-hiring.hehehai.cn" }],
+  openGraph: {
+    title: "X-Hiring",
+    description: "每日最新招聘信息， 使用 Google AI 提取摘要",
+    url: "https://x-hiring.hehehai.cn",
+    images: [
+      {
+        url: "https://x-hiring.hehehai.cn/og.png",
+        width: 1200,
+        height: 630,
+        alt: "X-Hiring",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
