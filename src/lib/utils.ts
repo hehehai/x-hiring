@@ -5,6 +5,7 @@ import {
   differenceInMinutes,
   format,
 } from "date-fns";
+import { utcToZonedTime } from "date-fns-tz";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -20,9 +21,9 @@ export const randomInt = (start: number, end: number) => {
 };
 
 export const formatPosDate = (val: Date) => {
-  const now = new Date();
+  const now = utcToZonedTime(new Date(), "Asia/Shanghai");
 
-  const readStr = format(val, "yyyy/MM/dd HH:mm");
+  const readStr = format(val, "MM/dd HH:mm");
 
   // 如果时间在 5 分钟内，显示 刚刚
   const minutesDiff = differenceInMinutes(now, val);
@@ -37,13 +38,8 @@ export const formatPosDate = (val: Date) => {
 
   // 如果时间在 12 小时内，显示 xx 小时前
   const hoursDiff = differenceInHours(now, val);
-  if (hoursDiff <= 12) {
-    return `${hoursDiff} 小时前 | ${readStr}`;
-  }
-
-  // 如果时间大于 12 小时，在今天，显示今天
   if (hoursDiff <= 24) {
-    return `今天 | ${readStr}`;
+    return `${hoursDiff} 小时前 | ${readStr}`;
   }
 
   // 如果时间在 5 天内，显示 xx 天前
@@ -53,5 +49,5 @@ export const formatPosDate = (val: Date) => {
   }
 
   // 如果时间大于 5 天，显示时间
-  return format(val, "yyyy/MM/dd HH:mm");
+  return format(val, "MM/dd HH:mm");
 };
