@@ -7,8 +7,6 @@ import Head from "next/head";
 import { type Metadata } from "next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
-export const revalidate = 3600;
-
 export const metadata: Metadata = {
   metadataBase: new URL("https://x-hiring.hehehai.cn"),
   title: {
