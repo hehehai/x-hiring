@@ -7,10 +7,7 @@ import { JobList } from "./_components/job-list";
 import { JobViewDrawer } from "./_components/job-view-drawer";
 import { jobQuery } from "@/server/functions/job/query";
 
-export const config = {
-  runtime: "edge",
-};
-
+export const runtime = "edge";
 export const revalidate = 7200;
 
 const SearchParamsSchema = z.object({

@@ -10,9 +10,7 @@ import { Suspense } from "react";
 import { Spinners } from "@/components/shared/icons";
 import { cache } from "react";
 
-export const config = {
-  runtime: "edge",
-};
+export const runtime = "edge";
 
 const getDetail = cache(jobDetail);
 
