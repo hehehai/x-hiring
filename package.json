@@ -66,6 +66,7 @@
     "@egoist/tailwindcss-icons": "^1.7.4",
     "@iconify-json/lucide": "^1.1.163",
     "@tailwindcss/typography": "^0.5.10",
+    "@tanstack/react-query-devtools": "^5.28.10",
     "@types/eslint": "^8.44.7",
     "@types/node": "^18.17.0",
     "@types/react": "^18.2.37",

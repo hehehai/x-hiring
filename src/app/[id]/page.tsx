@@ -10,8 +10,6 @@ import { Suspense } from "react";
 import { Spinners } from "@/components/shared/icons";
 import { cache } from "react";
 
-export const runtime = "edge";
-
 const getDetail = cache(jobDetail);
 
 export const revalidate = 7200;
