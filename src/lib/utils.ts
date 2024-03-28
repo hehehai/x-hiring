@@ -24,7 +24,7 @@ export const formatPosDate = (val: Date) => {
   const nowShanghai = convertToShanghaiTime(now);
   const valShanghai = convertToShanghaiTime(val);
 
-  const readStr = format(valShanghai, "yyyy/MM/dd HH:mm");
+  const readStr = format(valShanghai, "MM/dd HH:mm");
 
   // 如果时间在 5 分钟内，显示 刚刚
   const minutesDiff = differenceInMinutes(nowShanghai, valShanghai);

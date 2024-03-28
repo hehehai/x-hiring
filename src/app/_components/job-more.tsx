@@ -39,10 +39,10 @@ export const JobMore = memo(
       );
 
     useEffect(() => {
-      if (inView) {
+      if (inView && !isFetching) {
         void fetchNextPage();
       }
-    }, [inView, fetchNextPage]);
+    }, [inView, isFetching, fetchNextPage]);
 
     if (error) {
       return <div>Error: {error.message}</div>;
