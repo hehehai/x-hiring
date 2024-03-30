@@ -1,10 +1,10 @@
 import {
+  NextResponse,
   type NextFetchEvent,
   type NextRequest,
-  NextResponse,
 } from "next/server";
-
 import { Ratelimit } from "@upstash/ratelimit";
+
 import { redis } from "./lib/redis";
 
 const ratelimit = new Ratelimit({
@@ -14,7 +14,7 @@ const ratelimit = new Ratelimit({
 
 export default async function middleware(
   request: NextRequest,
-  event: NextFetchEvent,
+  _event: NextFetchEvent,
 ): Promise<Response | undefined> {
   const ip = request.ip ?? "127.0.0.1";
   const { success } = await ratelimit.limit(ip);

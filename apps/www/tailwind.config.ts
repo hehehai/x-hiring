@@ -1,8 +1,8 @@
-import type { Config } from "tailwindcss";
-import { fontFamily } from "tailwindcss/defaultTheme";
-import animate from "tailwindcss-animate";
+import { getIconCollections, iconsPlugin } from "@egoist/tailwindcss-icons";
 import typography from "@tailwindcss/typography";
-import { iconsPlugin, getIconCollections } from "@egoist/tailwindcss-icons";
+import type { Config } from "tailwindcss";
+import animate from "tailwindcss-animate";
+import { fontFamily } from "tailwindcss/defaultTheme";
 
 const config = {
   darkMode: ["class"],

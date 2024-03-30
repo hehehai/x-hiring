@@ -1,7 +1,8 @@
-import { JobItem } from "./job-item";
-import { JobMore } from "./job-more";
 import { useId } from "react";
 import { type Job } from "@prisma/client";
+
+import { JobItem } from "./job-item";
+import { JobMore } from "./job-more";
 
 interface JobListProps {
   s?: string[];

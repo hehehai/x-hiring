@@ -1,14 +1,15 @@
-import { notFound } from "next/navigation";
-import { JobDetail } from "../_components/job-detail.server";
-import { Separator } from "@/components/ui/separator";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { cache, Suspense } from "react";
 import { type Metadata } from "next";
-import { Logo } from "@/components/shared/logo";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 import { jobDetail } from "@/server/functions/job/query";
-import { Suspense } from "react";
+
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import { Spinners } from "@/components/shared/icons";
-import { cache } from "react";
+import { Logo } from "@/components/shared/logo";
+
+import { JobDetail } from "../_components/job-detail.server";
 
 const getDetail = cache(jobDetail);
 

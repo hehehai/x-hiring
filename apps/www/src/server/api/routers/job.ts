@@ -1,7 +1,6 @@
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
-import { db } from "@actijob/db";
 import { jobDetail } from "@/server/functions/job/query";
-import { type Prisma } from "@actijob/db";
+import { db, type Prisma } from "@actijob/db";
 import { z } from "zod";
 
 export const jobRouter = createTRPCRouter({

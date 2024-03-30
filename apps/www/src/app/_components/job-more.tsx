@@ -1,10 +1,11 @@
 "use client";
 
-import { Spinners } from "@/components/shared/icons";
-import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import React, { memo, useEffect, useRef } from "react";
 import { api } from "@/trpc/react";
-import React, { memo } from "react";
-import { useEffect, useRef } from "react";
+
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { Spinners } from "@/components/shared/icons";
+
 import { JobItem } from "./job-item";
 
 interface JobMoreProps {

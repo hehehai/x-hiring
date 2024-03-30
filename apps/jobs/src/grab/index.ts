@@ -118,7 +118,7 @@ const v2exDataCapture = async () => {
       }
       logger.info(`[V2EX] 分析文章摘要 ${article.id}`);
       const analysis = await withAiAnalysis(
-        `${article.title}\n${abstract.content}`
+        `${article.title}\n${abstract.content}`,
       );
 
       if (
@@ -253,7 +253,7 @@ const eleDuckDataCapture = async () => {
       }
       logger.info(`[ELE_DUCK] 分析文章摘要 ${article.id}`);
       const analysis = await withAiAnalysis(
-        `${article.title}\n${abstract.content}`
+        `${article.title}\n${abstract.content}`,
       );
 
       if (

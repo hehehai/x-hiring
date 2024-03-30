@@ -10,7 +10,6 @@
   "scripts": {
     "clean": "git clean -xdf .turbo node_modules",
     "build": "prisma generate",
-    "format": "prisma format",
     "generate": "prisma generate",
     "migrate-dev": "prisma migrate dev --skip-seed",
     "migrate-deploy": "prisma migrate deploy",
@@ -37,7 +36,7 @@
   "eslintConfig": {
     "root": true,
     "extends": [
-      "@actijob/eslint-config/base"
+      "@actijob/eslint-config/index"
     ]
   }
 }

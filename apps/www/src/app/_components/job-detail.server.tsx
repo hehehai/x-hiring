@@ -1,12 +1,12 @@
-import { JobSiteTag } from "@/components/shared/job-site-tag";
+import React, { memo } from "react";
+import { type Job } from "@actijob/db";
+import Markdown from "react-markdown";
+
+import { cn, formatPosDate } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { cn, formatPosDate } from "@/lib/utils";
-import { type Job } from "@prisma/client";
-import { format } from "date-fns";
-import React, { memo } from "react";
-import Markdown from "react-markdown";
+import { JobSiteTag } from "@/components/shared/job-site-tag";
 
 interface JobDetailServerProps extends React.ComponentPropsWithoutRef<"div"> {
   data: Job;

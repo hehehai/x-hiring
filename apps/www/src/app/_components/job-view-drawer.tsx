@@ -1,13 +1,14 @@
 "use client";
 
 import * as React from "react";
+import { useEffect } from "react";
+import { useSearchParams } from "next/navigation";
+import { useAtom } from "jotai";
 
 import { Sheet, SheetContent } from "@/components/ui/sheet";
-import { useAtom } from "jotai";
+
 import { activeAtom } from "../_store/job-view.store";
 import { JobDetailClient } from "./job-detail.client";
-import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
 
 export function JobViewDrawer() {
   const searchParams = useSearchParams();
@@ -23,7 +24,7 @@ export function JobViewDrawer() {
     } else {
       window.history.pushState({}, "", `/?${searchParams.toString()}`);
     }
-  }, [activeId]);
+  }, [activeId, searchParams]);
 
   return (
     <Sheet

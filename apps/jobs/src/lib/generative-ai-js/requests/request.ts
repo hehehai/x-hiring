@@ -45,7 +45,7 @@ export class RequestUrl {
     public model: string,
     public task: Task,
     public apiKey: string,
-    public stream: boolean
+    public stream: boolean,
   ) {}
   toString(): string {
     let url = `${BASE_URL}/${API_VERSION}/${this.model}:${this.task}`;
@@ -66,7 +66,7 @@ function getClientHeaders(): string {
 export async function makeRequest(
   url: RequestUrl,
   body: string,
-  requestOptions?: RequestOptions
+  requestOptions?: RequestOptions,
 ): Promise<Response> {
   let response;
   try {
@@ -105,7 +105,7 @@ export async function makeRequest(
     }
   } catch (e: any) {
     const err = new GoogleGenerativeAIError(
-      `Error fetching from ${url.toString()}: ${e.message}`
+      `Error fetching from ${url.toString()}: ${e.message}`,
     );
     err.stack = e.stack;
     throw err;

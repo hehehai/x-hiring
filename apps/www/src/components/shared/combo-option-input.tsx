@@ -1,8 +1,11 @@
 "use client";
 
 import * as React from "react";
+import { Command as CommandPrimitive } from "cmdk";
 import { X } from "lucide-react";
 
+import { searchCombos } from "@/lib/constants";
+import useSet from "@/hooks/useSet";
 import { Badge } from "@/components/ui/badge";
 import {
   Command,
@@ -11,9 +14,7 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import { Command as CommandPrimitive } from "cmdk";
-import useSet from "@/hooks/useSet";
-import { searchCombos } from "@/lib/constants";
+
 import { SearchLineIcon } from "./icons";
 
 interface ComboOptionInputProps
@@ -37,7 +38,7 @@ export function ComboOptionInput({
     if (onChange) {
       onChange(Array.from(selected));
     }
-  }, [selected]);
+  }, [selected, onChange]);
 
   const handleKeyDown = React.useCallback(
     (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -67,7 +68,7 @@ export function ComboOptionInput({
           break;
       }
     },
-    [inputLock, selectControl, setSearch, search, value],
+    [inputLock, selectControl, setSearch, search],
   );
 
   const options = React.useMemo(() => {
@@ -133,7 +134,7 @@ export function ComboOptionInput({
               setInputLock(false);
             }}
             placeholder="搜索招聘信息，支持空格分隔多词条搜索"
-            className="placeholder:text-md text-base ml-2 flex-1 bg-transparent outline-none placeholder:text-secondary-foreground"
+            className="placeholder:text-md ml-2 flex-1 bg-transparent text-base outline-none placeholder:text-secondary-foreground"
           />
         </div>
       </div>

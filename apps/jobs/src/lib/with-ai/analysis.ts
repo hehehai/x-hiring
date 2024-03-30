@@ -102,22 +102,20 @@ const formatResult = (content = "") => {
 export async function withAiAnalysis(content: string) {
   try {
     // For text-only input, use the gemini-pro model
-    const model = genAI.getGenerativeModel(
-      {
-        model: "gemini-pro",
-        generationConfig: {
-          maxOutputTokens: 2048,
-          temperature: 0,
-          topP: 1,
-        },
-        safetySettings: [
-          {
-            category: HarmCategory.HARM_CATEGORY_HARASSMENT,
-            threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
-          },
-        ],
+    const model = genAI.getGenerativeModel({
+      model: "gemini-pro",
+      generationConfig: {
+        maxOutputTokens: 2048,
+        temperature: 0,
+        topP: 1,
       },
-    );
+      safetySettings: [
+        {
+          category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+          threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
+        },
+      ],
+    });
 
     const prompt = hiringAbstractPrompt + content;
 

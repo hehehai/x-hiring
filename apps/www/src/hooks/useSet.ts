@@ -44,7 +44,7 @@ const useSet = <K>(initialSet = new Set<K>()): [Set<K>, Actions<K>] => {
       shift,
       pop,
     };
-  }, [setSet]);
+  }, [setSet, initialSet]);
 
   const utils = {
     has: useCallback((item) => set.has(item), [set]),

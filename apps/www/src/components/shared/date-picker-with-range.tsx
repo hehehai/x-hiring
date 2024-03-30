@@ -3,8 +3,7 @@
 import * as React from "react";
 import { format } from "date-fns";
 import { zhCN } from "date-fns/locale";
-import { Calendar as CalendarIcon } from "lucide-react";
-import { type Matcher, type DateRange } from "react-day-picker";
+import { type DateRange, type Matcher } from "react-day-picker";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -14,6 +13,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+
 import { DateLineIcon } from "./icons";
 
 interface DatePickerWithRangeProps

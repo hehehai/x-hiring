@@ -1,11 +1,13 @@
+import { Suspense } from "react";
+import { jobQuery } from "@/server/functions/job/query";
 import { z } from "zod";
+
+import { Spinners } from "@/components/shared/icons";
+
 import { Header } from "./_components/header";
 import { JobFilter } from "./_components/job-filter";
-import { Suspense } from "react";
-import { Spinners } from "@/components/shared/icons";
 import { JobList } from "./_components/job-list";
 import { JobViewDrawer } from "./_components/job-view-drawer";
-import { jobQuery } from "@/server/functions/job/query";
 
 export const revalidate = 7200;
 

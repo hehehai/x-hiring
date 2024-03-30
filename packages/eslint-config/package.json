@@ -1,10 +1,10 @@
 {
   "name": "@actijob/eslint-config",
   "version": "0.0.0",
-  "main": "./index.cjs",
+  "main": "./index.js",
   "files": [
-    "./index.cjs",
-    "./next.cjs"
+    "./index.js",
+    "./next.js"
   ],
   "scripts": {
     "clean": "rimraf node_modules"
@@ -15,16 +15,18 @@
     "@typescript-eslint/parser": "^7.1.1",
     "eslint": "^8.57.0",
     "eslint-config-next": "^14.1.3",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-config-turbo": "^1.12.5",
     "eslint-plugin-package-json": "^0.10.4",
     "eslint-plugin-react": "^7.34.0",
     "eslint-plugin-unused-imports": "^3.1.0",
+    "prettier": "^3.2.5",
     "typescript": "5.2.2"
   },
   "eslintConfig": {
     "root": true,
     "extends": [
-      "./base.cjs"
+      "./index.js"
     ]
   }
 }

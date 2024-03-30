@@ -1,5 +1,6 @@
-import { cn } from "@/lib/utils";
 import { type SVGProps } from "react";
+
+import { cn } from "@/lib/utils";
 
 export function Spinners(props: SVGProps<SVGSVGElement>) {
   return (

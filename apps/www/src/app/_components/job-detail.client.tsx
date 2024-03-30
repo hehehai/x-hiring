@@ -1,12 +1,14 @@
 "use client";
 
-import { Spinners } from "@/components/shared/icons";
+import { memo } from "react";
+import Link from "next/link";
+import { api } from "@/trpc/react";
+
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { api } from "@/trpc/react";
-import Link from "next/link";
+import { Spinners } from "@/components/shared/icons";
+
 import { JobDetail } from "./job-detail.server";
-import { memo } from "react";
 
 interface JobDetailClientProps {
   id: string;

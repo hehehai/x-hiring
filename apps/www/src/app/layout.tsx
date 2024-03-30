@@ -1,11 +1,11 @@
 import "@/styles/globals.css";
 
+import { type Metadata } from "next";
 import { TRPCReactProvider } from "@/trpc/react";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import ReactDOM from "react-dom";
 
 import { cn } from "@/lib/utils";
-import Head from "next/head";
-import { type Metadata } from "next";
-import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://x-hiring.hehehai.cn"),
@@ -45,15 +45,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  ReactDOM.preload(
+    "https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Regular.min.css",
+    { as: "style" },
+  );
+
   return (
-    <html lang="en" suppressHydrationWarning>
-      <Head>
-        <link
-          rel="stylesheet"
-          crossOrigin="anonymous"
-          href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Regular.min.css"
-        />
-      </Head>
+    <html lang="zh-CN" suppressHydrationWarning>
       <body className={cn("min-h-screen bg-background font-sans antialiased")}>
         <TRPCReactProvider>{children}</TRPCReactProvider>
       </body>

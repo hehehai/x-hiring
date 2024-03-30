@@ -1,8 +1,9 @@
 "use client";
 
-import { useAtom } from "jotai";
-import { activeAtom } from "../_store/job-view.store";
 import { useRouter } from "next/navigation";
+import { useAtom } from "jotai";
+
+import { activeAtom } from "../_store/job-view.store";
 
 export const JobItemWrapper = ({
   id,

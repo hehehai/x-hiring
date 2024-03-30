@@ -1,4 +1,4 @@
-import { db, Prisma } from "@actijob/db";
+import { db, type Prisma } from "@actijob/db";
 
 interface JobQueryParams {
   s?: string[];
@@ -41,8 +41,7 @@ export async function jobQuery(params: JobQueryParams) {
       };
     }
 
-    const withOrderBy: Prisma.JobOrderByWithRelationInput =
-      {};
+    const withOrderBy: Prisma.JobOrderByWithRelationInput = {};
     if (type === "news") {
       withOrderBy.originCreateAt = "desc";
     } else if (type === "trending") {

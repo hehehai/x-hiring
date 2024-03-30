@@ -17,7 +17,7 @@ function boot() {
       },
       null,
       false,
-      "Asia/Shanghai"
+      "Asia/Shanghai",
     );
 
     job.start();

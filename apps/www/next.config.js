@@ -8,9 +8,9 @@ await import("./src/env.js");
 const config = {
   logging: {
     fetches: {
-      fullUrl: true
+      fullUrl: true,
     },
-  }
+  },
 };
 
 export default config;

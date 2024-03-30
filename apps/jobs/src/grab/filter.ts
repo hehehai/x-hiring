@@ -1,32 +1,30 @@
-const excludeJobKeyword = ['求职']
+const excludeJobKeyword = ["求职"];
 
 export function isAvailableContent(text: string) {
   if (!text) {
-    return false
+    return false;
   }
   if (excludeJobKeyword.some((keyword) => text.includes(keyword))) {
-    return false
+    return false;
   }
-  return true
+  return true;
 }
 
-const excludeTagKeyword = ['----', '']
+const excludeTagKeyword = ["----", ""];
 
 export function filterAvailableTags(tags: string[] = []) {
-  return tags.filter((tag) => !excludeTagKeyword.includes(tag))
+  return tags.filter((tag) => !excludeTagKeyword.includes(tag));
 }
 
 const eleDuckExcludeCategory = [
-  'jd', // 招聘
-  'talent', // 人才库
-  'upwork' // Upwork
-]
+  "jd", // 招聘
+  "talent", // 人才库
+  "upwork", // Upwork
+];
 
 export function isAvailableCategory(code: string) {
   if (eleDuckExcludeCategory.includes(code)) {
-    return true
+    return true;
   }
-  return false
+  return false;
 }
-
-
