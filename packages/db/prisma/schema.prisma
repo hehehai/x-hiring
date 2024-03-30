@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider     = "postgresql"
+    url          = env("DATABASE_URL")
+    relationMode = "prisma"
+}
+
+enum OriginSite {
+    V2EX
+    ELE_DUCK
+}
+
+model Job {
+    id               String     @id @default(cuid())
+    originId         String
+    originUrl        String
+    originSite       OriginSite
+    originTitle      String
+    originContent    String?    @db.Text
+    originCreateAt   DateTime?
+    originUsername   String?
+    originUserAvatar String?
+    syncAt           DateTime   @default(now())
+    invalid          Boolean    @default(false)
+
+    title            String?
+    tags             String[]
+    generatedContent String?   @db.Text
+    generatedAt      DateTime?
+
+    showCount Int @default(0)
+
+    @@unique([originId, originSite])
+    @@map("job")
+}

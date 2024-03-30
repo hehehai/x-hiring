@@ -1,0 +1,43 @@
+{
+  "name": "@actijob/db",
+  "version": "1.0.0",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "type": "module",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "scripts": {
+    "clean": "git clean -xdf .turbo node_modules",
+    "build": "prisma generate",
+    "format": "prisma format",
+    "generate": "prisma generate",
+    "migrate-dev": "prisma migrate dev --skip-seed",
+    "migrate-deploy": "prisma migrate deploy",
+    "seed": "prisma db seed",
+    "studio": "prisma studio"
+  },
+  "prisma": {
+    "seed": "ts-node --transpileOnly --project ./tsconfig.seed.json ./seed-database.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "5.4.2",
+    "prisma": "5.4.2",
+    "ts-pattern": "^5.0.6"
+  },
+  "devDependencies": {
+    "@actijob/eslint-config": "workspace:*",
+    "@actijob/tsconfig": "workspace:*",
+    "@types/node": "^18.17.0",
+    "dotenv": "^16.3.1",
+    "dotenv-cli": "^7.3.0",
+    "ts-node": "^10.9.1",
+    "typescript": "5.2.2"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "@actijob/eslint-config/base"
+    ]
+  }
+}

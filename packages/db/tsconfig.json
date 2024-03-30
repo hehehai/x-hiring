@@ -1,0 +1,10 @@
+{
+  "extends": "@actijob/tsconfig/base.json",
+  "compilerOptions": {
+    "noEmit": true,
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.json",
+  ]
+}

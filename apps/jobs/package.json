@@ -1,0 +1,40 @@
+{
+  "name": "@actijob/jobs",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./main.ts",
+  "types": "./main.ts",
+  "author": {
+    "name": "hehehai",
+    "url": "https://twitter.com/riverhohai"
+  },
+  "scripts": {
+    "clean": "git clean -xdf .turbo node_modules",
+    "dev": "npx tsx src/main.ts",
+    "start": "npm run build && node dist/main.cjs",
+    "build": "tsup src/main.ts --format cjs"
+  },
+  "dependencies": {
+    "cheerio": "1.0.0-rc.12",
+    "cron": "^3.1.6",
+    "dotenv": "^16.4.4",
+    "https-proxy-agent": "^7.0.4",
+    "node-fetch": "^3.3.2",
+    "tsup": "^8.0.2",
+    "winston": "^3.11.0",
+    "winston-daily-rotate-file": "^5.0.0",
+    "@actijob/db": "workspace:*"
+  },
+  "devDependencies": {
+    "@actijob/eslint-config": "workspace:*",
+    "@actijob/tsconfig": "workspace:*",
+    "@types/node": "^20.11.19",
+    "tsx": "^4.7.1"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "@actijob/eslint-config/base"
+    ]
+  }
+}

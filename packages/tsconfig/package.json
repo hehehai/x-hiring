@@ -1,0 +1,13 @@
+{
+  "name": "@actijob/tsconfig",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "clean": "rimraf node_modules"
+  },
+  "files": [
+    "base.json",
+    "nextjs.json",
+    "react-library.json"
+  ]
+}
