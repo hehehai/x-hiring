@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useMemo } from "react";
+import { memo, useCallback, useMemo } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { addDays, addYears } from "date-fns";
 
@@ -25,7 +25,7 @@ interface JobFilterProps {
   type?: string;
 }
 
-export const JobFilter = ({ s = [], dateRange, type }: JobFilterProps) => {
+export const JobFilter = memo(({ s = [], dateRange, type }: JobFilterProps) => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -99,4 +99,6 @@ export const JobFilter = ({ s = [], dateRange, type }: JobFilterProps) => {
       </div>
     </div>
   );
-};
+});
+
+JobFilter.displayName = "JobFilter";

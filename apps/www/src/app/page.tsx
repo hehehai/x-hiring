@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { jobQuery } from "@/server/functions/job/query";
-import { z } from "zod";
 
+import { searchParamsSchema } from "@/lib/validations/jobs";
 import { Spinners } from "@/components/shared/icons";
 
 import { Header } from "./_components/header";
@@ -11,34 +11,12 @@ import { JobViewDrawer } from "./_components/job-view-drawer";
 
 export const revalidate = 7200;
 
-const SearchParamsSchema = z.object({
-  s: z
-    .string()
-    .max(999)
-    .optional()
-    .transform((str) => (str ? [...new Set(str.split(","))] : [])),
-  dateRange: z
-    .string()
-    .max(256)
-    .optional()
-    .default("")
-    .transform((str) => {
-      if (str === "") {
-        return undefined;
-      }
-      return str.split(",") ?? [];
-    }),
-  type: z.enum(["news", "trending"]).optional().default("news"),
-});
-
-export type SearchParamsType = z.infer<typeof SearchParamsSchema>;
-
 export default async function HomePage({
   searchParams,
 }: {
   searchParams: Record<string, string | string[] | undefined>;
 }) {
-  const query = SearchParamsSchema.safeParse(searchParams);
+  const query = searchParamsSchema.safeParse(searchParams);
   if (!query.success) {
     return <p>Bad request</p>;
   }

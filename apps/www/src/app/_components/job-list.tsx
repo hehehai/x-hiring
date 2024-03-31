@@ -1,5 +1,5 @@
 import { useId } from "react";
-import { type Job } from "@prisma/client";
+import { type Job } from "@actijob/db";
 
 import { JobItem } from "./job-item";
 import { JobMore } from "./job-more";

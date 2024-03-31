@@ -35,19 +35,14 @@ export function ComboOptionInput({
   const [value, setValue] = React.useState("");
 
   React.useEffect(() => {
-    if (onChange) {
+    if (onChange && selected.values.toString() !== initValue.toString()) {
       onChange(Array.from(selected));
     }
-  }, [selected, onChange]);
+  }, [selected]);
 
   const handleKeyDown = React.useCallback(
     (e: React.KeyboardEvent<HTMLDivElement>) => {
       switch (e.key) {
-        // case "Enter":
-        //   if (!inputLock) {
-        //     onChange?.(Array.from(selected));
-        //   }
-        //   break;
         case "Escape":
           inputRef.current?.blur();
           break;

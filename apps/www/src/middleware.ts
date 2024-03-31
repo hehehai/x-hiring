@@ -5,6 +5,7 @@ import {
 } from "next/server";
 import { Ratelimit } from "@upstash/ratelimit";
 
+import { env } from "./env";
 import { redis } from "./lib/redis";
 
 const ratelimit = new Ratelimit({
@@ -16,6 +17,8 @@ export default async function middleware(
   request: NextRequest,
   _event: NextFetchEvent,
 ): Promise<Response | undefined> {
+  if (env.NODE_ENV !== "production") return NextResponse.next();
+
   const ip = request.ip ?? "127.0.0.1";
   const { success } = await ratelimit.limit(ip);
   return success

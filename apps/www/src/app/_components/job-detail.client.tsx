@@ -50,7 +50,7 @@ export const JobDetailClient = memo(({ id, onClose }: JobDetailClientProps) => {
         </div>
       ) : data ? (
         <div className="w-full flex-grow overflow-y-auto">
-          <JobDetail data={data}></JobDetail>
+          <JobDetail data={data} className="max-md:px-4"></JobDetail>
         </div>
       ) : (
         <div>异常</div>

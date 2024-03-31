@@ -37,7 +37,7 @@ export function JobViewDrawer() {
     >
       <SheetContent
         side="left"
-        className="focus-visible:outline-0 md:min-w-[1000px]"
+        className="min-w-full focus-visible:outline-0 md:min-w-[1000px]"
       >
         {activeId && (
           <JobDetailClient
