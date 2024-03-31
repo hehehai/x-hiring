@@ -1,9 +1,6 @@
 /** @type {import("eslint").Linter.Config} */
 const config = {
-  extends: [
-    "eslint:recommended",
-    "prettier",
-  ],
+  extends: ["eslint:recommended", "prettier", "eslint-config-turbo"],
   env: {
     es2022: true,
     node: true,

@@ -38,7 +38,7 @@ export function ComboOptionInput({
     if (onChange && selected.values.toString() !== initValue.toString()) {
       onChange(Array.from(selected));
     }
-  }, [selected]);
+  }, [selected, initValue, onChange]);
 
   const handleKeyDown = React.useCallback(
     (e: React.KeyboardEvent<HTMLDivElement>) => {

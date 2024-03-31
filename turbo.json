@@ -48,5 +48,14 @@
       "persistent": true,
       "cache": false
     }
-  }
+  },
+  "globalEnv": [
+    "VERCEL_URL",
+    "PORT",
+    "NODE_ENV",
+    "DATABASE_URL",
+    "UPSTASH_REDIS_REST_URL",
+    "UPSTASH_REDIS_REST_TOKEN",
+    "SKIP_ENV_VALIDATION"
+  ]
 }
