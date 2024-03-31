@@ -18,6 +18,7 @@ out/
 next-env.d.ts
 
 # production
+dist
 build
 
 # misc

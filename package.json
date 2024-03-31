@@ -19,6 +19,8 @@
     "clean:workspaces": "turbo clean",
     "build": "turbo build",
     "dev": "turbo dev",
+    "start:web": "turbo dev --filter=www",
+    "start:jobs": "turbo dev --filter=jobs",
     "dev:web": "turbo dev --filter=www",
     "dev:jobs": "turbo dev --filter=jobs",
     "postinstall": "pnpm -F db generate",

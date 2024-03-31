@@ -32,6 +32,16 @@
         ".env"
       ]
     },
+    "start": {
+      "cache": false,
+      "persistent": true,
+      "dotEnv": [
+        ".env.production.local",
+        ".env.local",
+        ".env.production",
+        ".env"
+      ]
+    },
     "db:generate": {
       "persistent": true,
       "cache": false
