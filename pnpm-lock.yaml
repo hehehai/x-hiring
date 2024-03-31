@@ -23,9 +23,6 @@ importers:
       '@actijob/db':
         specifier: workspace:*
         version: link:../../packages/db
-      '@prisma/client':
-        specifier: 5.4.2
-        version: 5.4.2(prisma@5.4.2)
       cheerio:
         specifier: 1.0.0-rc.12
         version: 1.0.0-rc.12
@@ -41,9 +38,6 @@ importers:
       node-fetch:
         specifier: ^3.3.2
         version: 3.3.2
-      prisma:
-        specifier: 5.4.2
-        version: 5.4.2
       tsup:
         specifier: ^8.0.2
         version: 8.0.2(typescript@5.4.3)
@@ -78,9 +72,6 @@ importers:
       '@next/third-parties':
         specifier: ^14.1.3
         version: 14.1.4(next@14.1.4)(react@18.2.0)
-      '@prisma/client':
-        specifier: 5.4.2
-        version: 5.4.2(prisma@5.4.2)
       '@radix-ui/react-accordion':
         specifier: ^1.1.2
         version: 1.1.2(@types/react-dom@18.2.23)(@types/react@18.2.73)(react-dom@18.2.0)(react@18.2.0)
@@ -171,9 +162,6 @@ importers:
       next-themes:
         specifier: ^0.2.1
         version: 0.2.1(next@14.1.4)(react-dom@18.2.0)(react@18.2.0)
-      prisma:
-        specifier: 5.4.2
-        version: 5.4.2
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -235,6 +223,9 @@ importers:
       '@iconify-json/lucide':
         specifier: ^1.1.163
         version: 1.1.178
+      '@prisma/nextjs-monorepo-workaround-plugin':
+        specifier: ^5.11.0
+        version: 5.11.0
       '@tailwindcss/typography':
         specifier: ^0.5.10
         version: 0.5.12(tailwindcss@3.4.3)
@@ -1144,6 +1135,10 @@ packages:
     resolution: {integrity: sha512-fqeucJ3LH0e1eyFdT0zRx+oETLancu5+n4lhiYECyEz6H2RDskPJHJYHkVc0LhkU4Uv7fuEnppKU3nVKNzMh8g==}
     requiresBuild: true
     dev: false
+
+  /@prisma/nextjs-monorepo-workaround-plugin@5.11.0:
+    resolution: {integrity: sha512-9aTbG01unOPjJyAgR95NJKkzwocPap/u36AX9ZkLuNQKK31LKpsb7fnPbp/UzB7IgMtVMjnlNi4bJNvNbIhlhg==}
+    dev: true
 
   /@radix-ui/number@1.0.1:
     resolution: {integrity: sha512-T5gIdVO2mmPW3NNhjNgEP3cqMXjXL9UbO0BzWcXfvdBs+BohbQxvd/K5hSVKmn9/lbTdsQVKbUcP5WLCwvUbBg==}
