@@ -5,38 +5,37 @@ import { TRPCReactProvider } from "@/trpc/react";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import ReactDOM from "react-dom";
 
+import { siteMeta } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://x-hiring.hehehai.cn"),
+  metadataBase: new URL(siteMeta.url),
   title: {
-    default: "X-Hiring",
-    template: "%s | X-Hiring",
+    default: siteMeta.title,
+    template: `%s | ${siteMeta.title}`,
   },
-  description: "每日最新招聘信息， 使用 Google AI 提取摘要",
-  keywords: [
-    "招聘",
-    "程序员招聘",
-    "招聘信息",
-    "远程工作",
-    "远程开发",
-    "兼职开发",
-    "远程兼职",
-  ],
+  description: siteMeta.description,
+  keywords: siteMeta.keywords,
   icons: [{ rel: "icon", url: "/favicon.svg", type: "image/svg+xml" }],
-  authors: [{ name: "X-Hiring", url: "https://x-hiring.hehehai.cn" }],
+  authors: [{ name: siteMeta.title, url: siteMeta.url }],
   openGraph: {
-    title: "X-Hiring",
-    description: "每日最新招聘信息， 使用 Google AI 提取摘要",
-    url: "https://x-hiring.hehehai.cn",
+    title: siteMeta.title,
+    description: siteMeta.description,
+    url: siteMeta.url,
     images: [
       {
-        url: "https://x-hiring.hehehai.cn/og.png",
+        url: siteMeta.ogImage,
         width: 1200,
         height: 630,
         alt: "X-Hiring",
       },
     ],
+  },
+  alternates: {
+    canonical: siteMeta.url,
+    types: {
+      "application/rss+xml": [{ url: "feed.xml", title: "RSS 订阅" }],
+    },
   },
 };
 
@@ -51,11 +50,11 @@ export default function RootLayout({
   );
 
   return (
-    <html lang="zh-CN" suppressHydrationWarning>
+    <html lang={siteMeta.language} suppressHydrationWarning>
       <body className={cn("min-h-screen bg-background font-sans antialiased")}>
         <TRPCReactProvider>{children}</TRPCReactProvider>
       </body>
-      <GoogleAnalytics gaId="G-TZXQXXK3C2" />
+      <GoogleAnalytics gaId={siteMeta.ga} />
     </html>
   );
 }
