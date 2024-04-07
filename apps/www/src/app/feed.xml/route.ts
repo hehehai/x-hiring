@@ -43,7 +43,7 @@ export async function GET() {
         });
       });
     },
-    3600, // 1 hr
+    60, // 1 hr
   );
 
   return new Response(feed.xml(), {
