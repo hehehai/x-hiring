@@ -53,7 +53,7 @@ npm run dev
 > 接下来的计划是什么？
 
 1. [ ] 新增 team 入口， 展示中文社区开发团队和独立开发者列表
-2. [ ] RSS 服务
+2. [x] RSS 服务: [`https://x-hiring.hehehai.cn/feed.xml`](https://x-hiring.hehehai.cn/feed.xml)
 3. [ ] 账号登录，订阅职位关键词，有效职位发布后，将第一时间收到邮件
 
 ## 反馈建议/职位交流 📢
