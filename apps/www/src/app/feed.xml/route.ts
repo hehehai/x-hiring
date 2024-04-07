@@ -5,6 +5,8 @@ import { mdToHtml } from "@/lib/md-utils";
 import { memoOne } from "@/lib/memo-one";
 import { siteMeta } from "@/lib/site";
 
+export const revalidate = 3600;
+
 export async function GET() {
   const feed = new RSS({
     title: siteMeta.title,
