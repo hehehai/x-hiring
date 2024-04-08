@@ -42,7 +42,6 @@ export async function GET() {
   return new Response(feed.xml(), {
     headers: {
       "content-type": "application/xml",
-      "cache-control": "public, max-age=86400",
     },
   });
 }
