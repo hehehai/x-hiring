@@ -54,7 +54,6 @@ npm run dev
 
 1. [ ] 新增 team 入口， 展示中文社区开发团队和独立开发者列表
 2. [x] RSS 服务: [`https://x-hiring.hehehai.cn/feed.xml`](https://x-hiring.hehehai.cn/feed.xml)
-3. [ ] 账号登录，订阅职位关键词，有效职位发布后，将第一时间收到邮件
 
 ## 反馈建议/职位交流 📢
 
@@ -62,4 +61,4 @@ npm run dev
 
 |                   职位群                    |              |                     我的 WX                    |
 |:---------------------------------------:|:------------:|:-------------------------------------------:|
-| <img src="https://pub-d9291d6d3a90468cb78bfd59b5ac6e8c.r2.dev/WechatIMG3743.jpg" width="220"> |              | <img src="https://pub-d9291d6d3a90468cb78bfd59b5ac6e8c.r2.dev/me-wx.png" width="240"> |
+| <img src="https://pub-d9291d6d3a90468cb78bfd59b5ac6e8c.r2.dev/WechatIMG3860.jpg" width="220"> |              | <img src="https://pub-d9291d6d3a90468cb78bfd59b5ac6e8c.r2.dev/me-wx.png" width="240"> |
