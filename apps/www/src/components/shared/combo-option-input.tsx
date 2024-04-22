@@ -137,7 +137,7 @@ export function ComboOptionInput({
         <div className="relative z-10">
           <div className="absolute top-2 z-10 w-full rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in">
             <CommandList>
-              <CommandEmpty>无匹配项, “空格” 确实当前输入</CommandEmpty>
+              <CommandEmpty>无匹配项, “空格” 确认当前输入</CommandEmpty>
               <CommandGroup className="h-full overflow-auto">
                 {options.map((option) => {
                   return (
