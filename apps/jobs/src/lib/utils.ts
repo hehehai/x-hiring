@@ -8,6 +8,7 @@ if (!process.env.DATABASE_URL) {
 
 export const env = {
   NODE_ENV: process.env.NODE_ENV ?? "development",
+  GITHUB_TOKEN: process.env.GITHUB_TOKEN ?? "",
   GEMINI_AI_API_KEY: process.env.GEMINI_AI_API_KEY ?? "",
   DATABASE_URL: process.env.DATABASE_URL ?? "",
   LOCAL_FETCH_PROXY: process.env.LOCAL_FETCH_PROXY ?? "",

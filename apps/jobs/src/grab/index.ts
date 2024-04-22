@@ -17,6 +17,7 @@ import {
   isAvailableContent,
 } from "./filter";
 import logger from "../lib/logger";
+import { RuanyfComment, ruanyfListRoute } from "./routes/ruanyf";
 
 // 同步比较最小判断数
 const MIN_SYNC_DIFF = 5;
@@ -118,7 +119,7 @@ const v2exDataCapture = async () => {
       }
       logger.info(`[V2EX] 分析文章摘要 ${article.id}`);
       const analysis = await withAiAnalysis(
-        `${article.title}\n${abstract.content}`,
+        `${article.title}\n${abstract.content}`
       );
 
       if (
@@ -253,7 +254,7 @@ const eleDuckDataCapture = async () => {
       }
       logger.info(`[ELE_DUCK] 分析文章摘要 ${article.id}`);
       const analysis = await withAiAnalysis(
-        `${article.title}\n${abstract.content}`,
+        `${article.title}\n${abstract.content}`
       );
 
       if (
@@ -292,9 +293,126 @@ const eleDuckDataCapture = async () => {
   }
 };
 
-export async function grabAction() {
+export async function ruanyfDataCapture() {
+  try {
+    const latestSlice = await db.job.findMany({
+      select: {
+        id: true,
+        originId: true,
+      },
+      where: {
+        originSite: "RUANYF",
+      },
+      orderBy: {
+        originCreateAt: "desc",
+      },
+      take: MAX_SYNC_CHECK,
+    });
+    if (latestSlice.length === 0) {
+      // 第一次抓取
+      logger.info("[RUANYF] 第一次抓取");
+    }
+    const savedOriginIds = latestSlice.map((item) => item.originId);
+
+    const fetchArticles = new Map<string, RuanyfComment>();
+    const syncedIds: string[] = [];
+
+    // 评论
+    const data = await ruanyfListRoute();
+    if (!data || !data.comments.length) {
+      logger.warn("[RUANYF] 未抓取到评论");
+      return;
+    }
+
+    // 同步判断
+    data.comments.forEach((comment) => {
+      const commentId = `${data.number}_${comment.id}`;
+      const syncIdx = savedOriginIds.indexOf(commentId);
+      if (syncIdx === -1) {
+        logger.info(`[RUANYF] 未同步过 ${commentId}`);
+        fetchArticles.set(commentId, comment);
+      } else {
+        logger.warn(`[RUANYF] 已同步过 ${commentId}`);
+        syncedIds.push(commentId);
+      }
+    });
+
+    if (!fetchArticles.size) {
+      logger.warn("无新文章");
+      return;
+    }
+
+    logger.info(`[RUANYF] 新文章数量 ${fetchArticles.size}`);
+
+    // 详情
+    for (const article of fetchArticles.values()) {
+      const articleId = `${data.number}_${article.id}`;
+      const saveInvalid = async () => {
+        logger.warn(`[RUANYF] 文章摘要无效 ${articleId}`);
+        const articleData = await db.job.create({
+          data: {
+            originSite: "RUANYF",
+            originId: articleId,
+            originUrl: article.html_url,
+            originContent: article.body,
+            originTitle: data.title,
+            invalid: true,
+          },
+        });
+        logger.info(`[RUANYF] 无效文章数据已保存 ${articleData.id}`);
+        await sleep(randomInt(500, 1000));
+      };
+
+      logger.info(`[RUANYF] 分析文章摘要 ${articleId}`);
+      const analysis = await withAiAnalysis(`${article.body}`);
+
+      if (
+        !analysis?.title.trim() ||
+        !analysis.content ||
+        analysis.title === "无" ||
+        analysis.content === "无"
+      ) {
+        await saveInvalid();
+        continue;
+      }
+
+      logger.info(`[RUANYF] 保持文章到数据库 ${articleId}`);
+      const articleData = await db.job.create({
+        data: {
+          originSite: "RUANYF",
+          originId: articleId,
+          originUrl: article.html_url,
+          originTitle: data.title,
+          originContent: article.body,
+          originCreateAt: new Date(article.created_at),
+          originUsername: article.user.login,
+          originUserAvatar: article.user.avatar_url,
+          title: analysis.title,
+          tags: filterAvailableTags(analysis.tags),
+          generatedContent: analysis.content,
+          generatedAt: new Date(),
+        },
+      });
+
+      logger.info(`[RUANYF] 文章数据已保存 ${articleData.id}`);
+      // 等待⌛️
+      await sleep(randomInt(800, 1200));
+    }
+  } catch (err) {
+    console.error("[RUANYF] 抓取失败 error", err);
+  }
+}
+
+export async function grabHighFrequencyAction() {
   logger.info("抓取开始");
+  // 无法并发， Gemini API 限制并发
   await v2exDataCapture();
   await eleDuckDataCapture();
+  logger.info("抓取结束");
+}
+
+export async function grabLowFrequencyAction() {
+  logger.info("抓取开始");
+  await ruanyfDataCapture();
   logger.info("抓取结束");
 }

@@ -24,6 +24,7 @@
     "tsup": "^8.0.2",
     "winston": "^3.11.0",
     "winston-daily-rotate-file": "^5.0.0",
+    "@octokit/core": "^6.1.2",
     "@actijob/db": "workspace:*"
   },
   "devDependencies": {
