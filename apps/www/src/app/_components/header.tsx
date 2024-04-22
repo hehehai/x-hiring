@@ -28,7 +28,9 @@ export const Header = () => {
         <li>
           🥳 本网站数据来源于
           <HeaderLink link="https://www.v2ex.com/go/jobs">V2EX</HeaderLink>和
-          <HeaderLink link="https://eleduck.com">电鸭社区</HeaderLink>，
+          <HeaderLink link="https://eleduck.com">电鸭社区</HeaderLink>以及
+          <HeaderLink link="https://github.com/ruanyf/weekly/issues/4204">谁在招人</HeaderLink>
+          ，
           对招聘信息使用
           <HeaderLink link="https://makersuite.google.com/?hl=zh-cn">
             Google Gemini
