@@ -9,9 +9,13 @@ const siteTagMap = {
     label: "电鸭",
     class: "bg-gradient-to-b from-orange-500 to-orange-400",
   },
+  RUANYF: {
+    label: "阮一峰",
+    class: "bg-gradient-to-b from-blue-600 to-blue-500",
+  },
 };
 
-export const JobSiteTag = ({ type }: { type: "V2EX" | "ELE_DUCK" }) => {
+export const JobSiteTag = ({ type }: { type: "V2EX" | "ELE_DUCK" | "RUANYF" }) => {
   const { label, class: cls } = siteTagMap[type];
   return <Badge className={cls}>{label}</Badge>;
 };
