@@ -61,4 +61,4 @@ npm run dev
 
 |                   职位群                    |              |                     我的 WX                    |
 |:---------------------------------------:|:------------:|:-------------------------------------------:|
-| <img src="https://pub-d9291d6d3a90468cb78bfd59b5ac6e8c.r2.dev/WechatIMG3860.jpg" width="220"> |              | <img src="https://pub-d9291d6d3a90468cb78bfd59b5ac6e8c.r2.dev/me-wx.png" width="240"> |
+| <img src="https://pub-d9291d6d3a90468cb78bfd59b5ac6e8c.r2.dev/WechatIMG3887.jpg" width="220"> |              | <img src="https://pub-d9291d6d3a90468cb78bfd59b5ac6e8c.r2.dev/me-wx.png" width="240"> |
