@@ -12,32 +12,66 @@
 > [!TIP]
 > 如果有合适的职位数据源，欢迎👏提 [issues](https://github.com/hehehai/x-hiring/issues/new), 我们将视情况开发。
 
+## 当前已支持
+
+- [x] [V2EX](https://www.v2ex.com/go/jobs)
+- [x] [电鸭社区](https://eleduck.com)
+- [x] [阮一峰 谁在招人](https://github.com/ruanyf/weekly/issues?q=%E8%B0%81%E5%9C%A8%E6%8B%9B%E4%BA%BA)
+
 ## ⌨️ 安装&运行
 
-> 数据抓取为独立服务， [x-hiring grab](https://github.com/hehehai/x-hiring-grab)
+项目使用 Monorepo、turbo、pnpm 管理
 
-配置环境变量。 在根目录创建 `.env` 文件(参考 `.env.example`)， 之后复制下面内容
+```shell
+pnpm install
+```
+
+```txt
+.
+├── apps
+│   ├── jobs
+│   └── www
+├── package.json
+├── packages
+│   ├── db
+│   ├── eslint-config
+│   └── tsconfig
+├── pnpm-workspace.yaml
+└── turbo.json
+```
+
+- jobs: 抓取任务
+- www： 网站
+- db： 公共数据服务
+
+> 数据抓取独立服务（和 `apps/jobs` 同步-支持 node 16）， [x-hiring grab](https://github.com/hehehai/x-hiring-grab)
+
+- `apps/jobs` 下 `.env.example` 文件复制，名称修改为 `.env` 内容自行修改
+- `apps/www` 下 `.env.example` 文件复制，名称修改为 `.env` 内容自行修改
+- `packages/db` 下 `.env.example` 文件复制，名称修改为 `.env` 内容自行修改(为了 `prisma migrate`)
 
 ```txt
 # Prisma postgresql 数据库
 DATABASE_URL="postgresql://x-hiring:password@0.0.0.0:5432/x-hiring"
 
-# Next Auth
-# You can generate a new secret on the command line with:
-# openssl rand -base64 32
-NEXTAUTH_SECRET="xxx"
-NEXTAUTH_URL="http://localhost:3000"
-
 # Google Gemini AI
 GEMINI_AI_API_KEY="api_token"
 
+# GithubToken
+GITHUB_TOKEN="ghp_xxx"
+
 # 本地代理 （可选）
 LOCAL_FETCH_PROXY="http://127.0.0.1:7890"
+
+# Redis Upstash
+# https://upstash.com/blog/nextjs-ratelimiting
+UPSTASH_REDIS_REST_URL="https://xxx.upstash.io"
+UPSTASH_REDIS_REST_TOKEN="xxx"
 ```
 
 ```shell
-npm install
-npm run dev
+pnpm run dev:web
+pnpm run dev:jobs
 ```
 
 打开 `http://localhost:3000`
@@ -52,8 +86,12 @@ npm run dev
 
 > 接下来的计划是什么？
 
-1. [ ] 新增 team 入口， 展示中文社区开发团队和独立开发者列表
-2. [x] RSS 服务: [`https://x-hiring.hehehai.cn/feed.xml`](https://x-hiring.hehehai.cn/feed.xml)
+1. [x] RSS 服务: [`https://x-hiring.hehehai.cn/feed.xml`](https://x-hiring.hehehai.cn/feed.xml)
+2. [ ] 相关职位推荐 - 每个职位详情下方暂时最新 6 个类似职位
+3. [ ] 上次查看标识 - 下一次打开时，列表滚动到上次打开时的第一条数据时，标记上次查看标识
+4. [ ] 新增 team 入口， 展示中文社区开发团队和独立开发者列表
+5. [ ] 支持登录 - 使用 clerk 登录账号
+6. [ ] 支持职位信息发布 - 发布职位后默认状态为待审核， 审核成功或失败将发送邮件到发布人邮箱
 
 ## 反馈建议/职位交流 📢
 

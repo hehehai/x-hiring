@@ -8,6 +8,7 @@ import { Ratelimit } from "@upstash/ratelimit";
 import { env } from "./env";
 import { redis } from "./lib/redis";
 
+// https://upstash.com/blog/nextjs-ratelimiting
 const ratelimit = new Ratelimit({
   redis: redis,
   limiter: Ratelimit.slidingWindow(25, "10 s"),

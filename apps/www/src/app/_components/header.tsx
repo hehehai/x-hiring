@@ -24,7 +24,7 @@ export const Header = () => {
       <div className="mb-3 text-3xl font-semibold md:mb-6 md:text-5xl">
         <Logo />
       </div>
-      <ul className="min-h-24 space-y-1 rounded-xl bg-orange-500 p-4 text-white md:w-4/6">
+      <ul className="min-h-24 space-y-1 rounded-xl bg-orange-500 p-4 text-white md:w-5/6">
         <li>
           🥳 本网站数据来源于
           <HeaderLink link="https://www.v2ex.com/go/jobs">V2EX</HeaderLink>和
