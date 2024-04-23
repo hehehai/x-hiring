@@ -29,8 +29,7 @@ export const Header = () => {
           🥳 本网站数据来源于
           <HeaderLink link="https://www.v2ex.com/go/jobs">V2EX</HeaderLink>和
           <HeaderLink link="https://eleduck.com">电鸭社区</HeaderLink>以及
-          <HeaderLink link="https://github.com/ruanyf/weekly/issues/4204">谁在招人</HeaderLink>
-          ，
+          <HeaderLink link="https://github.com/ruanyf/weekly/issues?q=%E8%B0%81%E5%9C%A8%E6%8B%9B%E4%BA%BA">谁在招人</HeaderLink>，
           对招聘信息使用
           <HeaderLink link="https://makersuite.google.com/?hl=zh-cn">
             Google Gemini
