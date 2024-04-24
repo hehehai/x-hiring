@@ -14,7 +14,7 @@ export async function GET() {
     feed_url: `${siteMeta.url}/feed.xml`,
     language: "zh-CN",
     image_url: siteMeta.ogImage,
-    generator: "Next14",
+    generator: "X-Hiring",
   });
 
   const posts = await jobQuery({ limit: 20, type: "news" });

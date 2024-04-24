@@ -55,6 +55,15 @@ export const jobRouter = createTRPCRouter({
         }
 
         const data = await db.job.findMany({
+          select: {
+            id: true,
+            originSite: true,
+            originCreateAt: true,
+            originUsername: true,
+            originUserAvatar: true,
+            title: true,
+            tags: true,
+          },
           where: withWhere,
           orderBy: withOrderBy,
           take: limit + 1,

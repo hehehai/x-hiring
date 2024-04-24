@@ -40,9 +40,9 @@ pnpm install
 └── turbo.json
 ```
 
-- jobs: 抓取任务
-- www： 网站
-- db： 公共数据服务
+- jobs:抓取任务
+- www：网站
+- db：公共数据服务
 
 > 数据抓取独立服务（和 `apps/jobs` 同步-支持 node 16）， [x-hiring grab](https://github.com/hehehai/x-hiring-grab)
 
@@ -87,7 +87,7 @@ pnpm run dev:jobs
 > 接下来的计划是什么？
 
 1. [x] RSS 服务: [`https://x-hiring.hehehai.cn/feed.xml`](https://x-hiring.hehehai.cn/feed.xml)
-2. [ ] 相关职位推荐 - 每个职位详情下方暂时最新 6 个类似职位
+2. [ ] (搁置)相关职位推荐 - 每个职位详情下方展示最新 6 个类似职位
 3. [ ] 上次查看标识 - 下一次打开时，列表滚动到上次打开时的第一条数据时，标记上次查看标识
 4. [ ] 新增 team 入口， 展示中文社区开发团队和独立开发者列表
 5. [ ] 支持登录 - 使用 clerk 登录账号

@@ -64,6 +64,18 @@ export async function jobQuery(params: JobQueryParams) {
 
 export async function jobDetail(id: string) {
   const data = await db.job.findUnique({
+    select: {
+      id: true,
+      originId: true,
+      originUrl: true,
+      originSite: true,
+      originCreateAt: true,
+      originUsername: true,
+      originUserAvatar: true,
+      title: true,
+      tags: true,
+      generatedContent: true,
+    },
     where: {
       id,
     },

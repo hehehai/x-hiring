@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { type Job } from "@actijob/db";
+import { type RouterOutput } from "@/server/api/root";
 import Markdown from "react-markdown";
 
 import { cn, formatPosDate } from "@/lib/utils";
@@ -9,7 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { JobSiteTag } from "@/components/shared/job-site-tag";
 
 interface JobDetailServerProps extends React.ComponentPropsWithoutRef<"div"> {
-  data: Job;
+  data: NonNullable<RouterOutput["job"]["detail"]>;
 }
 
 export const JobDetail = memo(({ data, ...props }: JobDetailServerProps) => {

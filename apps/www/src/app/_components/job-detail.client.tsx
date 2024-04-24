@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Spinners } from "@/components/shared/icons";
 
-import { JobDetail } from "./job-detail.server";
+import { JobDetail } from "./job-detail";;
 
 interface JobDetailClientProps {
   id: string;
@@ -46,11 +46,11 @@ export const JobDetailClient = memo(({ id, onClose }: JobDetailClientProps) => {
       <Separator />
       {isFetching ? (
         <div className="flex h-full min-h-96 w-full flex-grow items-center justify-center text-3xl">
-          <Spinners></Spinners>
+          <Spinners />
         </div>
       ) : data ? (
         <div className="w-full flex-grow overflow-y-auto">
-          <JobDetail data={data} className="max-md:px-4"></JobDetail>
+          <JobDetail data={data} className="max-md:px-4" />
         </div>
       ) : (
         <div>异常</div>

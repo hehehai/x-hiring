@@ -9,7 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { Spinners } from "@/components/shared/icons";
 import { Logo } from "@/components/shared/logo";
 
-import { JobDetail } from "../_components/job-detail.server";
+import { JobDetail } from "../_components/job-detail";
 
 const getDetail = cache(jobDetail);
 

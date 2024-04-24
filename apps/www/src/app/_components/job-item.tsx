@@ -1,5 +1,4 @@
 import { memo } from "react";
-import { type Job } from "@actijob/db";
 import Highlighter from "react-highlight-words";
 
 import { formatPosDate } from "@/lib/utils";
@@ -8,10 +7,11 @@ import { Badge } from "@/components/ui/badge";
 import { JobSiteTag } from "@/components/shared/job-site-tag";
 
 import { JobItemWrapper } from "./job-item-wrapper";
+import { type RouterOutput } from "@/server/api/root";
 
 interface JobItemProps {
   s?: string[];
-  data: Job;
+  data: RouterOutput["job"]["queryWithCursor"]['data'][number];
 }
 
 export const JobItem = memo(({ s, data }: JobItemProps) => {
