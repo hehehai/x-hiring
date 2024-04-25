@@ -1,8 +1,8 @@
 import { cache, Suspense } from "react";
 import { type Metadata } from "next";
-import { Link } from 'next-view-transitions'
 import { notFound } from "next/navigation";
 import { jobDetail } from "@/server/functions/job/query";
+import { Link } from "next-view-transitions";
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -13,7 +13,7 @@ import { JobDetail } from "../_components/job-detail";
 
 const getDetail = cache(jobDetail);
 
-export const revalidate = 7200;
+export const dynamic = "force-static";
 
 type DetailProps = {
   params: { id: string };
