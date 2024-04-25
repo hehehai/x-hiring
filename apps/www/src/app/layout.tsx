@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import { type Metadata } from "next";
 import { TRPCReactProvider } from "@/trpc/react";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { ViewTransitions } from "next-view-transitions";
 import ReactDOM from "react-dom";
 
 import { siteMeta } from "@/lib/site";
@@ -50,11 +51,15 @@ export default function RootLayout({
   );
 
   return (
-    <html lang={siteMeta.language} suppressHydrationWarning>
-      <body className={cn("min-h-screen bg-background font-sans antialiased")}>
-        <TRPCReactProvider>{children}</TRPCReactProvider>
-      </body>
-      <GoogleAnalytics gaId={siteMeta.ga} />
-    </html>
+    <ViewTransitions>
+      <html lang={siteMeta.language} suppressHydrationWarning>
+        <body
+          className={cn("min-h-screen bg-background font-sans antialiased")}
+        >
+          <TRPCReactProvider>{children}</TRPCReactProvider>
+        </body>
+        <GoogleAnalytics gaId={siteMeta.ga} />
+      </html>
+    </ViewTransitions>
   );
 }

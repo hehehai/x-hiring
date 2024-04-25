@@ -1,7 +1,7 @@
 "use client";
 
 import { memo } from "react";
-import Link from "next/link";
+import { Link } from 'next-view-transitions'
 import { api } from "@/trpc/react";
 
 import { Button } from "@/components/ui/button";
