@@ -11,7 +11,7 @@
   "scripts": {
     "clean": "git clean -xdf .turbo node_modules",
     "dev": "npx tsx src/main.ts",
-    "start": "npm run build && node dist/main.cjs",
+    "start": "pnpm run build && node dist/main.cjs",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "build": "tsup src/main.ts --format cjs"
   },
