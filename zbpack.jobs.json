@@ -1,4 +1,0 @@
-{
-  "build_command": "pnpm run build:jobs",
-  "start_command": "pnpm run start:jobs"
-}
