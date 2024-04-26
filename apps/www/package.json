@@ -11,7 +11,7 @@
     "clean": "git clean -xdf .next .turbo node_modules",
     "build": "pnpm next build",
     "dev": "pnpm next dev",
-    "start": "pnpm run build && pnpm next start",
+    "start": "pnpm next start",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "next lint",
     "preview": "pnpm next build && pnpm next start",
