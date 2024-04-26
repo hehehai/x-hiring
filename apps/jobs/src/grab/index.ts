@@ -51,6 +51,7 @@ const v2exDataCapture = async () => {
     const syncedIds: string[] = [];
 
     // 遍历抓取
+    // eslint-disable-next-line no-constant-condition
     while (true) {
       if (syncedIds.length > MIN_SYNC_DIFF) {
         break;
@@ -185,6 +186,7 @@ const eleDuckDataCapture = async () => {
     const syncedIds: string[] = [];
 
     // 列表
+    // eslint-disable-next-line no-constant-condition
     while (true) {
       if (syncedIds.length > MIN_SYNC_DIFF) {
         break;
