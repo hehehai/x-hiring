@@ -3,6 +3,7 @@
 import { useAtom } from "jotai";
 
 import { activeAtom } from "../_store/job-view.store";
+import { trackEvent } from "@openpanel/nextjs";
 
 export const JobItemWrapper = ({
   id,
@@ -19,6 +20,7 @@ export const JobItemWrapper = ({
       onClick={() => {
         if (active !== id) {
           setActive(id);
+          trackEvent("job_click", { id });
         }
       }}
     >

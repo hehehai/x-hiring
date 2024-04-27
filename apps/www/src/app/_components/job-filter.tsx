@@ -7,6 +7,7 @@ import { addDays, addYears } from "date-fns";
 import { cn } from "@/lib/utils";
 import { ComboOptionInput } from "@/components/shared/combo-option-input";
 import { DatePickerWithRange } from "@/components/shared/date-picker-with-range";
+import { trackEvent } from "@openpanel/nextjs";
 
 const sortMap = [
   {
@@ -54,6 +55,7 @@ export const JobFilter = memo(({ s = [], dateRange, type }: JobFilterProps) => {
         params.set("type", data.type);
       }
       router.replace(`/?${params.toString()}`);
+      trackEvent("job_filter", { params: params.toString() });
     },
     [router, searchParams],
   );
