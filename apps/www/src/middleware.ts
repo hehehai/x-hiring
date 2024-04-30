@@ -11,7 +11,7 @@ import { redis } from "./lib/redis";
 // https://upstash.com/blog/nextjs-ratelimiting
 const ratelimit = new Ratelimit({
   redis: redis,
-  limiter: Ratelimit.slidingWindow(25, "10 s"),
+  limiter: Ratelimit.slidingWindow(16, "10 s"),
 });
 
 export default async function middleware(
