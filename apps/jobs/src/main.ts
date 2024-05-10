@@ -5,6 +5,13 @@ import { env } from "./lib/utils";
 import { grabHighFrequencyAction, grabLowFrequencyAction } from "./grab";
 
 function boot() {
+  if (!process.env.GEMINI_AI_API_KEY) {
+    throw new Error("GEMINI_AI_API_KEY is not set");
+  }
+
+  if (!process.env.DATABASE_URL) {
+    throw new Error("DATABASE_URL is not set");
+  }
   try {
     logger.info(`SERVER start env:`, env);
 

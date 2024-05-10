@@ -13,19 +13,21 @@
     "dev": "npx tsx ./src/main.ts",
     "start": "node ./dist/main.cjs",
     "format": "prettier --check . --ignore-path ../../.gitignore",
-    "build": "tsup src/main.ts --format cjs"
+    "build": "tsup src/main.ts --format cjs",
+    "update:full-tags": "npx tsx ./src/update/full-tags.ts"
   },
   "dependencies": {
+    "@actijob/db": "workspace:*",
+    "@octokit/core": "^6.1.2",
     "cheerio": "1.0.0-rc.12",
     "cron": "^3.1.6",
     "dotenv": "^16.4.4",
     "https-proxy-agent": "^7.0.4",
     "node-fetch": "^3.3.2",
+    "segmentit": "^2.0.3",
     "tsup": "^8.0.2",
     "winston": "^3.11.0",
-    "winston-daily-rotate-file": "^5.0.0",
-    "@octokit/core": "^6.1.2",
-    "@actijob/db": "workspace:*"
+    "winston-daily-rotate-file": "^5.0.0"
   },
   "devDependencies": {
     "@actijob/eslint-config": "workspace:*",

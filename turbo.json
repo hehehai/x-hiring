@@ -69,6 +69,7 @@
     "SKIP_ENV_VALIDATION",
     "GEMINI_AI_API_KEY",
     "LOCAL_FETCH_PROXY",
-    "GITHUB_TOKEN"
+    "GITHUB_TOKEN",
+    "LOG_LEVEL"
   ]
 }
