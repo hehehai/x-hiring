@@ -25,7 +25,7 @@ async function update() {
           title: true,
           tags: true,
         },
-        take: 3200,
+        take: 20,
       };
       if (lastCursor) {
         params.cursor = {
