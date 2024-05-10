@@ -1,4 +1,4 @@
-import { db, type Prisma } from "@actijob/db";
+import { db, Prisma, type Job } from "@actijob/db";
 
 interface JobQueryParams {
   s?: string[];
@@ -74,6 +74,7 @@ export async function jobDetail(id: string) {
       originUserAvatar: true,
       title: true,
       tags: true,
+      fullTags: true,
       generatedContent: true,
     },
     where: {
@@ -93,4 +94,40 @@ export async function jobDetail(id: string) {
     });
   }
   return data;
+}
+
+export async function correlation(tags: string[], excludeIds?: string[]) {
+  const sql = Prisma.sql`SELECT
+	*
+FROM
+	job
+WHERE
+	"fullTags" && ARRAY [${Prisma.join(tags)}] -- 包含任意一个标签
+  ${excludeIds?.length ? Prisma.sql`AND id NOT IN (${Prisma.join(excludeIds)})` : Prisma.empty} -- 排除指定项
+ORDER BY
+	(
+		SELECT
+			COUNT(*) -- 计算匹配项数量
+		FROM
+			unnest("fullTags") AS t
+		WHERE
+			t IN(${Prisma.join(tags)})    
+  ) DESC,
+  "originCreateAt" DESC 
+LIMIT 6;
+`;
+
+  const sites: Job[] = await db.$queryRaw(sql);
+
+  return sites.map((site) => ({
+    id: site.id,
+    originId: site.originId,
+    originUrl: site.originUrl,
+    originSite: site.originSite,
+    title: site.title,
+    originCreateAt: site.originCreateAt,
+    originUsername: site.originUsername,
+    originUserAvatar: site.originUserAvatar,
+    tags: site.tags,
+  }));
 }

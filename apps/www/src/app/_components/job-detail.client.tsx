@@ -1,14 +1,15 @@
 "use client";
 
-import { memo } from "react";
-import { Link } from 'next-view-transitions'
+import { memo, useEffect, useRef } from "react";
 import { api } from "@/trpc/react";
+import { Link } from "next-view-transitions";
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Spinners } from "@/components/shared/icons";
 
-import { JobDetail } from "./job-detail";;
+import JobCorrelationList from "./job-correlation-list";
+import { JobDetail } from "./job-detail";
 
 interface JobDetailClientProps {
   id: string;
@@ -16,10 +17,28 @@ interface JobDetailClientProps {
 }
 
 export const JobDetailClient = memo(({ id, onClose }: JobDetailClientProps) => {
+  const contentRef = useRef<HTMLDivElement>(null);
+
   const { data, isFetching } = api.job.detail.useQuery(
     { id },
     { refetchOnWindowFocus: false },
   );
+
+  const correlationQuery = api.job.correlation.useQuery(
+    { id },
+    {
+      refetchOnWindowFocus: false,
+    },
+  );
+
+  useEffect(() => {
+    if (contentRef.current) {
+      contentRef.current.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  }, [id, contentRef.current]);
 
   return (
     <>
@@ -44,17 +63,36 @@ export const JobDetailClient = memo(({ id, onClose }: JobDetailClientProps) => {
         </div>
       </div>
       <Separator />
-      {isFetching ? (
-        <div className="flex h-full min-h-96 w-full flex-grow items-center justify-center text-3xl">
-          <Spinners />
-        </div>
-      ) : data ? (
-        <div className="w-full flex-grow overflow-y-auto">
-          <JobDetail data={data} className="max-md:px-4" />
-        </div>
-      ) : (
-        <div>异常</div>
-      )}
+      <div ref={contentRef} className="w-full overflow-y-auto">
+        {isFetching ? (
+          <div className="flex min-h-[calc(100vh-100px)] w-full flex-grow items-center justify-center text-3xl">
+            <Spinners />
+          </div>
+        ) : data ? (
+          <div className="w-full flex-grow">
+            <JobDetail data={data} className="max-md:px-4" />
+          </div>
+        ) : (
+          <div className="flex min-h-[300px] w-full items-center justify-center">
+            详情获取异常
+          </div>
+        )}
+        {correlationQuery.isFetching ? (
+          <div className="flex min-h-96 w-full flex-grow items-center justify-center text-3xl">
+            <Spinners />
+          </div>
+        ) : correlationQuery.data ? (
+          <JobCorrelationList
+            list={correlationQuery.data}
+            isClient={true}
+            className="mx-auto max-w-2xl max-md:px-4"
+          />
+        ) : (
+          <div className="flex min-h-[300px] w-full items-center justify-center">
+            类似职位获取异常
+          </div>
+        )}
+      </div>
     </>
   );
 });

@@ -1,5 +1,5 @@
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
-import { jobDetail } from "@/server/functions/job/query";
+import { correlation, jobDetail } from "@/server/functions/job/query";
 import { db, type Prisma } from "@actijob/db";
 import { z } from "zod";
 
@@ -94,5 +94,19 @@ export const jobRouter = createTRPCRouter({
     .input(z.object({ id: z.string() }))
     .query(async ({ input }) => {
       return jobDetail(input.id);
+    }),
+
+  // 关联
+  correlation: publicProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      }),
+    )
+    .query(async ({ input }) => {
+      const job = await jobDetail(input.id);
+      if (!job) return null;
+
+      return correlation(job.fullTags, [job.id]);
     }),
 });

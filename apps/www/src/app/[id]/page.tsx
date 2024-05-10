@@ -9,6 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { Spinners } from "@/components/shared/icons";
 import { Logo } from "@/components/shared/logo";
 
+import JobCorrelationServerList from "../_components/job-correlation";
 import { JobDetail } from "../_components/job-detail";
 
 const getDetail = cache(jobDetail);
@@ -40,6 +41,7 @@ export default async function JobDetailPage({ params }: DetailProps) {
   if (!detail) {
     return notFound();
   }
+
   return (
     <div className="mx-auto w-full max-w-3xl py-8 max-md:px-4">
       <div className="flex items-center justify-between pb-6">
@@ -64,12 +66,21 @@ export default async function JobDetailPage({ params }: DetailProps) {
       <Separator />
       <Suspense
         fallback={
-          <div className="flex h-full min-h-96 w-full items-center justify-center text-3xl">
+          <div className="flex min-h-[calc(100vh-100px)] w-full items-center justify-center">
             <Spinners />
           </div>
         }
       >
         <JobDetail data={detail} className="max-w-full" />
+      </Suspense>
+      <Suspense
+        fallback={
+          <div className="flex min-h-96 w-full items-center justify-center">
+            <Spinners />
+          </div>
+        }
+      >
+        <JobCorrelationServerList id={detail.id} fullTags={detail.fullTags} />
       </Suspense>
     </div>
   );

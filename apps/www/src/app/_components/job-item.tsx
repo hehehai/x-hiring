@@ -1,4 +1,5 @@
 import { memo } from "react";
+import { type RouterOutput } from "@/server/api/root";
 import Highlighter from "react-highlight-words";
 
 import { formatPosDate } from "@/lib/utils";
@@ -7,12 +8,11 @@ import { Badge } from "@/components/ui/badge";
 import { JobSiteTag } from "@/components/shared/job-site-tag";
 
 import { JobItemWrapper } from "./job-item-wrapper";
-import { type RouterOutput } from "@/server/api/root";
 import ViewLine from "./view-line";
 
 interface JobItemProps {
   s?: string[];
-  data: RouterOutput["job"]["queryWithCursor"]['data'][number];
+  data: RouterOutput["job"]["queryWithCursor"]["data"][number];
 }
 
 export const JobItem = memo(({ s, data }: JobItemProps) => {
@@ -21,8 +21,11 @@ export const JobItem = memo(({ s, data }: JobItemProps) => {
     : "未知";
 
   return (
-    <JobItemWrapper id={data.id}>
-      <ViewLine id={data.id}/>
+    <JobItemWrapper
+      id={data.id}
+      className="relative flex cursor-pointer border-b border-zinc-100 bg-white p-5 hover:bg-zinc-50 max-md:flex-col max-md:space-y-4 md:p-8"
+    >
+      <ViewLine id={data.id} />
       <div className="flex flex-shrink-0 space-x-3 md:w-[280px]">
         <Avatar className="h-12 w-12 border border-zinc-100 md:h-14 md:w-14">
           {data.originUserAvatar && <AvatarImage src={data.originUserAvatar} />}
