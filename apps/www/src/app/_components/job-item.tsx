@@ -8,6 +8,7 @@ import { JobSiteTag } from "@/components/shared/job-site-tag";
 
 import { JobItemWrapper } from "./job-item-wrapper";
 import { type RouterOutput } from "@/server/api/root";
+import ViewLine from "./view-line";
 
 interface JobItemProps {
   s?: string[];
@@ -21,6 +22,7 @@ export const JobItem = memo(({ s, data }: JobItemProps) => {
 
   return (
     <JobItemWrapper id={data.id}>
+      <ViewLine id={data.id}/>
       <div className="flex flex-shrink-0 space-x-3 md:w-[280px]">
         <Avatar className="h-12 w-12 border border-zinc-100 md:h-14 md:w-14">
           {data.originUserAvatar && <AvatarImage src={data.originUserAvatar} />}

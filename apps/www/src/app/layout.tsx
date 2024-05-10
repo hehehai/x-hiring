@@ -2,13 +2,12 @@ import "@/styles/globals.css";
 
 import { type Metadata } from "next";
 import { TRPCReactProvider } from "@/trpc/react";
+import { OpenpanelProvider } from "@openpanel/nextjs";
 import { ViewTransitions } from "next-view-transitions";
 import ReactDOM from "react-dom";
 
 import { siteMeta } from "@/lib/site";
 import { cn } from "@/lib/utils";
-import { env } from "@/env";
-import { OpenpanelProvider } from "@openpanel/nextjs";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteMeta.url),
@@ -59,14 +58,12 @@ export default function RootLayout({
         >
           <TRPCReactProvider>{children}</TRPCReactProvider>
         </body>
-        {env.NODE_ENV === "production" && (
-          <OpenpanelProvider
-            clientId="0d1c25b1-c43a-45c2-880e-f6f57643093f"
-            trackScreenViews={true}
-            trackAttributes={true}
-            trackOutgoingLinks={true}
-          />
-        )}
+        <OpenpanelProvider
+          clientId="0d1c25b1-c43a-45c2-880e-f6f57643093f"
+          trackScreenViews={true}
+          trackAttributes={true}
+          trackOutgoingLinks={true}
+        />
       </html>
     </ViewTransitions>
   );

@@ -8,6 +8,7 @@ import { Header } from "./_components/header";
 import { JobFilter } from "./_components/job-filter";
 import { JobList } from "./_components/job-list";
 import { JobViewDrawer } from "./_components/job-view-drawer";
+import ViewLineWrapper from "./_components/view-line-wrapper";
 
 export const revalidate = 7200;
 
@@ -17,6 +18,7 @@ export default async function HomePage({
   searchParams: Record<string, string | string[] | undefined>;
 }) {
   const query = searchParamsSchema.safeParse(searchParams);
+
   if (!query.success) {
     return <p>Bad request</p>;
   }
@@ -31,32 +33,34 @@ export default async function HomePage({
   });
 
   return (
-    <div className="mx-auto min-h-screen min-w-0 max-w-6xl border-x border-zinc-100">
-      <Header />
-      <main className="mt-12">
-        <div className="px-4 md:px-8">
-          <JobFilter s={s} dateRange={dateRange} type={type} />
-        </div>
-        <div className="mt-12 border-t border-zinc-100">
-          <Suspense
-            fallback={
-              <div className="flex h-full min-h-96 w-full items-center justify-center text-3xl">
-                <Spinners />
-              </div>
-            }
-          >
-            <JobList
-              s={s}
-              dateRange={dateRange}
-              type={type}
-              firstSlice={firstSlice}
-            />
+    <ViewLineWrapper firstSlice={firstSlice} s={s} dateRange={dateRange}>
+      <div className="mx-auto min-h-screen min-w-0 max-w-6xl border-x border-zinc-100">
+        <Header />
+        <main className="mt-12">
+          <div className="px-4 md:px-8">
+            <JobFilter s={s} dateRange={dateRange} type={type} />
+          </div>
+          <div className="mt-12 border-t border-zinc-100">
+            <Suspense
+              fallback={
+                <div className="flex h-full min-h-96 w-full items-center justify-center text-3xl">
+                  <Spinners />
+                </div>
+              }
+            >
+              <JobList
+                s={s}
+                dateRange={dateRange}
+                type={type}
+                firstSlice={firstSlice}
+              />
+            </Suspense>
+          </div>
+          <Suspense fallback={null}>
+            <JobViewDrawer />
           </Suspense>
-        </div>
-        <Suspense fallback={null}>
-          <JobViewDrawer />
-        </Suspense>
-      </main>
-    </div>
+        </main>
+      </div>
+    </ViewLineWrapper>
   );
 }

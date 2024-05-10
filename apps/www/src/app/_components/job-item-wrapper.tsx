@@ -16,7 +16,7 @@ export const JobItemWrapper = ({
 
   return (
     <div
-      className="flex cursor-pointer border-b border-zinc-100 bg-white p-5 hover:bg-zinc-50 max-md:flex-col max-md:space-y-4 md:p-8"
+      className="relative flex cursor-pointer border-b border-zinc-100 bg-white p-5 hover:bg-zinc-50 max-md:flex-col max-md:space-y-4 md:p-8"
       onClick={() => {
         if (active !== id) {
           setActive(id);
