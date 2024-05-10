@@ -19,22 +19,24 @@ export const JobDetail = memo(({ data, ...props }: JobDetailServerProps) => {
       className={cn("mx-auto w-full max-w-2xl py-8", props.className)}
     >
       <div>
-        <div className="mb-4 flex items-center space-x-3">
-          <JobSiteTag type={data.originSite} />
-          <div className="flex items-center space-x-2">
-            <Avatar className="h-5 w-5 border border-zinc-100">
-              {data.originUserAvatar && (
-                <AvatarImage src={data.originUserAvatar} />
-              )}
-              <AvatarFallback>
-                {data.originUsername?.slice(0, 1).toLocaleUpperCase() || "?"}
-              </AvatarFallback>
-            </Avatar>
-            <div className="max-w-[240px]">
-              <div className="truncate text-sm">{data.originUsername}</div>
+        <div className="mb-4 md:flex md:items-center md:space-x-3">
+          <div className="flex items-center space-x-3">
+            <JobSiteTag type={data.originSite} />
+            <div className="flex items-center space-x-2">
+              <Avatar className="h-5 w-5 border border-zinc-100">
+                {data.originUserAvatar && (
+                  <AvatarImage src={data.originUserAvatar} />
+                )}
+                <AvatarFallback>
+                  {data.originUsername?.slice(0, 1).toLocaleUpperCase() || "?"}
+                </AvatarFallback>
+              </Avatar>
+              <div className="max-w-[240px]">
+                <div className="truncate text-sm">{data.originUsername}</div>
+              </div>
             </div>
           </div>
-          <div className="text-sm text-gray-500">
+          <div className="mt-3 md:mt-0 text-sm text-gray-500">
             {data.originCreateAt
               ? `${formatPosDate(data.originCreateAt)} 发布`
               : "未知"}
