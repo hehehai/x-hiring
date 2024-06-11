@@ -1,0 +1,2 @@
+[start]
+cmd = 'pnpm run start:web'
