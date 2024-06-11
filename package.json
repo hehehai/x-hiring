@@ -9,7 +9,7 @@
   "engines": {
     "node": ">=v20.8.0"
   },
-  "packageManager": "pnpm@8.14.3",
+  "packageManager": "pnpm@8.15.8",
   "workspaces": [
     "apps/*",
     "packages/*"
@@ -19,12 +19,12 @@
     "clean:workspaces": "turbo clean",
     "build": "turbo build",
     "dev": "turbo dev",
-    "build:web": "turbo build --filter=www",
-    "start:web": "turbo start --filter=www",
-    "build:jobs": "turbo build --filter=jobs",
-    "start:jobs": "turbo start --filter=jobs",
-    "dev:web": "turbo dev --filter=www",
-    "dev:jobs": "turbo dev --filter=jobs",
+    "build:web": "turbo build --filter=@actijob/www",
+    "start:web": "turbo start --filter=@actijob/www",
+    "build:jobs": "turbo build --filter=@actijob/jobs",
+    "start:jobs": "turbo start --filter=@actijob/jobs",
+    "dev:web": "turbo dev --filter=@actijob/www",
+    "dev:jobs": "turbo dev --filter=@actijob/jobs",
     "postinstall": "pnpm -F db generate",
     "db:generate": "pnpm -F db generate",
     "db:push": "pnpm -F db push",
@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "prettier": "^3.2.5",
-    "turbo": "^1.12.4",
+    "turbo": "^2.0.3",
     "typescript": "^5.3.3"
   }
 }

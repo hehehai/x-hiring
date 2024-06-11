@@ -1,11 +1,32 @@
 {
   "$schema": "https://turborepo.org/schema.json",
-  "globalDotEnv": [".env"],
-  "pipeline": {
+  "globalEnv": [
+    "VERCEL_URL",
+    "PORT",
+    "NODE_ENV",
+    "DATABASE_URL",
+    "UPSTASH_REDIS_REST_URL",
+    "UPSTASH_REDIS_REST_TOKEN",
+    "SKIP_ENV_VALIDATION",
+    "GEMINI_AI_API_KEY",
+    "LOCAL_FETCH_PROXY",
+    "GITHUB_TOKEN",
+    "LOG_LEVEL"
+  ],
+  "globalDependencies": [
+    ".env"
+  ],
+  "tasks": {
     "build": {
-      "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**"],
-      "dotEnv": [
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        ".next/**",
+        "!.next/cache/**"
+      ],
+      "inputs": [
+        "$TURBO_DEFAULT$",
         ".env.production.local",
         ".env.local",
         ".env.production",
@@ -13,7 +34,9 @@
       ]
     },
     "lint": {
-      "dependsOn": ["^lint"]
+      "dependsOn": [
+        "^lint"
+      ]
     },
     "format": {
       "persistent": true,
@@ -25,7 +48,8 @@
     "dev": {
       "cache": false,
       "persistent": true,
-      "dotEnv": [
+      "inputs": [
+        "$TURBO_DEFAULT$",
         ".env.production.local",
         ".env.local",
         ".env.production",
@@ -35,7 +59,8 @@
     "start": {
       "cache": false,
       "persistent": true,
-      "dotEnv": [
+      "inputs": [
+        "$TURBO_DEFAULT$",
         ".env.production.local",
         ".env.local",
         ".env.production",
@@ -58,18 +83,5 @@
       "persistent": true,
       "cache": false
     }
-  },
-  "globalEnv": [
-    "VERCEL_URL",
-    "PORT",
-    "NODE_ENV",
-    "DATABASE_URL",
-    "UPSTASH_REDIS_REST_URL",
-    "UPSTASH_REDIS_REST_TOKEN",
-    "SKIP_ENV_VALIDATION",
-    "GEMINI_AI_API_KEY",
-    "LOCAL_FETCH_PROXY",
-    "GITHUB_TOKEN",
-    "LOG_LEVEL"
-  ]
+  }
 }
