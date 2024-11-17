@@ -17,7 +17,7 @@ import {
   isAvailableContent,
 } from "./filter";
 import logger from "../lib/logger";
-import { RuanyfComment, ruanyfListRoute } from "./routes/ruanyf";
+import { type RuanyfComment, ruanyfListRoute } from "./routes/ruanyf";
 
 // 同步比较最小判断数
 const MIN_SYNC_DIFF = 5;
@@ -120,7 +120,7 @@ const v2exDataCapture = async () => {
       }
       logger.info(`[V2EX] 分析文章摘要 ${article.id}`);
       const analysis = await withAiAnalysis(
-        `${article.title}\n${abstract.content}`
+        `${article.title}\n${abstract.content}`,
       );
 
       if (
@@ -257,7 +257,7 @@ const eleDuckDataCapture = async () => {
       }
       logger.info(`[ELE_DUCK] 分析文章摘要 ${article.id}`);
       const analysis = await withAiAnalysis(
-        `${article.title}\n${abstract.content}`
+        `${article.title}\n${abstract.content}`,
       );
 
       if (
