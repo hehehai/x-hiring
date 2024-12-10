@@ -1,3 +1,6 @@
+[install]
+cmd = 'pnpm install --no-frozen-lockfile'
+
 [build]
 cmd = 'pnpm run build:web'
 
