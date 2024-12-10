@@ -2,7 +2,7 @@
 cmd = 'pnpm install --no-frozen-lockfile'
 
 [build]
-cmd = 'pnpm run build:web'
+cmd = 'pnpm run build:jobs'
 
 [start]
-cmd = 'pnpm run start:web'
+cmd = 'pnpm run start:jobs'
