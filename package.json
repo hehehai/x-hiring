@@ -1,43 +1,40 @@
 {
-  "name": "actijob",
-  "version": "0.1.0",
-  "private": true,
-  "author": {
-    "name": "hehehai",
-    "url": "https://twitter.com/riverhohai"
-  },
-  "engines": {
-    "node": ">=v20.8.0"
-  },
-  "packageManager": "pnpm@8.15.8",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
-  "scripts": {
-    "clean": "git clean -xdf node_modules dist .next",
-    "clean:workspaces": "turbo clean",
-    "build": "turbo build",
-    "dev": "turbo dev",
-    "build:web": "turbo build --filter=@actijob/www",
-    "start:web": "turbo start --filter=@actijob/www",
-    "build:jobs": "turbo build --filter=@actijob/jobs",
-    "start:jobs": "turbo start --filter=@actijob/jobs",
-    "dev:web": "turbo dev --filter=@actijob/www",
-    "dev:jobs": "turbo dev --filter=@actijob/jobs",
-    "postinstall": "pnpm -F db generate",
-    "db:generate": "pnpm -F db generate",
-    "db:push": "pnpm -F db push",
-    "db:studio": "pnpm -F db studio",
-    "db:seed": "pnpm -F db seed",
-    "format": "turbo format --continue -- --write --cache --cache-location='node_modules/.cache/.prettiercache' --ignore-path='../../.gitignore'",
-    "lint": "turbo lint --continue -- --cache --cache-location node_modules/.cache/.eslintcache",
-    "lint:fix": "turbo lint --continue -- --fix --cache --cache-location node_modules/.cache/.eslintcache",
-    "typecheck": "turbo typecheck"
-  },
-  "devDependencies": {
-    "prettier": "^3.2.5",
-    "turbo": "^2.0.3",
-    "typescript": "^5.3.3"
-  }
+	"name": "actijob",
+	"version": "0.1.0",
+	"private": true,
+	"author": {
+		"name": "hehehai",
+		"url": "https://twitter.com/riverhohai"
+	},
+	"engines": {
+		"node": ">=v20.8.0"
+	},
+	"packageManager": "pnpm@9.15.0",
+	"workspaces": ["apps/*", "packages/*"],
+	"scripts": {
+		"clean": "git clean -xdf node_modules dist .next",
+		"clean:workspaces": "turbo clean",
+		"build": "turbo build",
+		"dev": "turbo dev",
+		"build:web": "turbo build --filter=@actijob/www",
+		"start:web": "turbo start --filter=@actijob/www",
+		"build:jobs": "turbo build --filter=@actijob/jobs",
+		"start:jobs": "turbo start --filter=@actijob/jobs",
+		"dev:web": "turbo dev --filter=@actijob/www",
+		"dev:jobs": "turbo dev --filter=@actijob/jobs",
+		"postinstall": "pnpm -F db generate",
+		"db:generate": "pnpm -F db generate",
+		"db:push": "pnpm -F db push",
+		"db:studio": "pnpm -F db studio",
+		"db:seed": "pnpm -F db seed",
+		"format": "turbo format --continue -- --write --cache --cache-location='node_modules/.cache/.prettiercache' --ignore-path='../../.gitignore'",
+		"lint": "turbo lint --continue -- --cache --cache-location node_modules/.cache/.eslintcache",
+		"lint:fix": "turbo lint --continue -- --fix --cache --cache-location node_modules/.cache/.eslintcache",
+		"typecheck": "turbo typecheck"
+	},
+	"devDependencies": {
+		"prettier": "^3.2.5",
+		"turbo": "^2.0.3",
+		"typescript": "^5.3.3"
+	}
 }
