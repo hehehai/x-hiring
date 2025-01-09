@@ -1,12 +1,12 @@
-import React from "react";
+import type { correlation } from "@/server/functions/job/query";
 import { Link } from "next-view-transitions";
-import { type correlation } from "@/server/functions/job/query";
+import type React from "react";
 
-import { cn, formatPosDate } from "@/lib/utils";
+import { JobSiteTag } from "@/components/shared/job-site-tag";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { JobSiteTag } from "@/components/shared/job-site-tag";
+import { cn, formatPosDate } from "@/lib/utils";
 
 import { JobItemWrapper } from "./job-item-wrapper";
 

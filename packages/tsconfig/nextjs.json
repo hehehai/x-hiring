@@ -8,6 +8,7 @@
     "target": "es2022",
     "allowJs": true,
     "moduleDetection": "force",
+    "moduleResolution": "Bundler",
     "isolatedModules": true,
     "noUncheckedIndexedAccess": true,
     "checkJs": true,

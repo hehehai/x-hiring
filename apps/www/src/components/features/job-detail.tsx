@@ -1,12 +1,13 @@
-import React, { memo } from "react";
-import { type RouterOutput } from "@/server/api/root";
+import type { RouterOutput } from "@/server/api/root";
+import type React from "react";
+import { memo } from "react";
 import Markdown from "react-markdown";
 
-import { cn, formatPosDate } from "@/lib/utils";
+import { JobSiteTag } from "@/components/shared/job-site-tag";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { JobSiteTag } from "@/components/shared/job-site-tag";
+import { cn, formatPosDate } from "@/lib/utils";
 
 interface JobDetailServerProps extends React.ComponentPropsWithoutRef<"div"> {
   data: NonNullable<RouterOutput["job"]["detail"]>;

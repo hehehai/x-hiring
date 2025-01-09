@@ -2,7 +2,7 @@
 
 import { useAtom } from "jotai";
 
-import { viewLineAtom } from "../_store/job-view.store";
+import { viewLineAtom } from "@/app/_store/job-view.store";
 
 export default function ViewLine({ id }: { id: string }) {
   const [viewLine] = useAtom(viewLineAtom);

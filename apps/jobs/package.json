@@ -18,22 +18,22 @@
   },
   "dependencies": {
     "@actijob/db": "workspace:*",
-    "@octokit/core": "^6.1.2",
+    "@octokit/core": "^6.1.3",
     "cheerio": "1.0.0-rc.12",
-    "cron": "^3.1.6",
-    "dotenv": "^16.4.4",
-    "https-proxy-agent": "^7.0.4",
+    "cron": "^3.3.2",
+    "dotenv": "^16.4.7",
+    "https-proxy-agent": "^7.0.6",
     "node-fetch": "^3.3.2",
     "segmentit": "^2.0.3",
-    "tsup": "^8.0.2",
-    "winston": "^3.11.0",
+    "tsup": "^8.3.5",
+    "winston": "^3.17.0",
     "winston-daily-rotate-file": "^5.0.0"
   },
   "devDependencies": {
     "@actijob/eslint-config": "workspace:*",
     "@actijob/tsconfig": "workspace:*",
-    "@types/node": "^20.11.19",
-    "tsx": "^4.7.1"
+    "@types/node": "^22.10.5",
+    "tsx": "^4.19.2"
   },
   "eslintConfig": {
     "root": true,

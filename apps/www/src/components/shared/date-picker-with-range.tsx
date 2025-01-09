@@ -1,11 +1,10 @@
 "use client";
 
-import * as React from "react";
 import { format } from "date-fns";
 import { zhCN } from "date-fns/locale";
-import { type DateRange, type Matcher } from "react-day-picker";
+import * as React from "react";
+import type { DateRange, Matcher } from "react-day-picker";
 
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -13,6 +12,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
 
 import { DateLineIcon } from "./icons";
 

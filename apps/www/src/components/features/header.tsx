@@ -12,6 +12,7 @@ const HeaderLink = ({
       className="hover:underline-offset-6 mx-1 inline-flex items-center underline underline-offset-4 transition-all"
       href={link}
       target="_blank"
+      rel="noreferrer"
     >
       {children}
     </a>

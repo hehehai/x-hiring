@@ -1,12 +1,12 @@
 "use client";
 
-import { memo, useEffect, useRef } from "react";
 import { api } from "@/trpc/react";
 import { Link } from "next-view-transitions";
+import { memo, useEffect, useRef } from "react";
 
+import { Spinners } from "@/components/shared/icons";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Spinners } from "@/components/shared/icons";
 
 import JobCorrelationList from "./job-correlation-list";
 import { JobDetail } from "./job-detail";
@@ -38,27 +38,27 @@ export const JobDetailClient = memo(({ id, onClose }: JobDetailClientProps) => {
         behavior: "smooth",
       });
     }
-  }, [id, contentRef.current]);
+  }, []);
 
   return (
     <>
       <div className="flex items-center justify-between p-3">
         <Button variant={"outline"} asChild>
           <Link href={`/${id}`} className="space-x-2">
-            <span className="i-lucide-maximize-2"></span>
+            <span className="i-lucide-maximize-2"/>
             <span>展开</span>
           </Link>
         </Button>
         <div className="flex items-center space-x-3">
           {!isFetching && data?.originUrl ? (
             <Button asChild>
-              <a href={data.originUrl} target="_blank">
+              <a href={data.originUrl} target="_blank" rel="noreferrer">
                 立即申请
               </a>
             </Button>
           ) : null}
           <Button variant={"outline"} onClick={() => onClose()}>
-            <span className="i-lucide-arrow-left-from-line"></span>
+            <span className="i-lucide-arrow-left-from-line"/>
           </Button>
         </div>
       </div>

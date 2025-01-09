@@ -22,15 +22,15 @@
   "dependencies": {
     "@prisma/client": "5.4.2",
     "prisma": "5.4.2",
-    "ts-pattern": "^5.0.6"
+    "ts-pattern": "^5.6.0"
   },
   "devDependencies": {
     "@actijob/eslint-config": "workspace:*",
     "@actijob/tsconfig": "workspace:*",
-    "@types/node": "^18.17.0",
-    "dotenv": "^16.3.1",
-    "dotenv-cli": "^7.3.0",
-    "ts-node": "^10.9.1",
+    "@types/node": "^22.10.5",
+    "dotenv": "^16.4.7",
+    "dotenv-cli": "^8.0.0",
+    "ts-node": "^10.9.2",
     "typescript": "5.2.2"
   },
   "eslintConfig": {

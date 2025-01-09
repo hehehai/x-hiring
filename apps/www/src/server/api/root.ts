@@ -1,7 +1,7 @@
 import { createTRPCRouter } from "@/server/api/trpc";
 
+import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
 import { jobRouter } from "./routers/job";
-import { type inferRouterInputs, type inferRouterOutputs } from "@trpc/server";
 
 /**
  * This is the primary router for your server.

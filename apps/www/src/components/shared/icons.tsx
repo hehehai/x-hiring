@@ -1,4 +1,4 @@
-import { type SVGProps } from "react";
+import type { SVGProps } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -12,6 +12,7 @@ export function Spinners(props: SVGProps<SVGSVGElement>) {
       {...props}
       className={cn("animate-spin", props.className)}
     >
+      <title>Loading</title>
       <path
         fill="currentColor"
         d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,19a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z"
@@ -34,6 +35,7 @@ export function SearchLineIcon(props: SVGProps<SVGSVGElement>) {
       {...props}
       xmlns="http://www.w3.org/2000/svg"
     >
+      <title>Search</title>
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -53,6 +55,7 @@ export function DateLineIcon(props: SVGProps<SVGSVGElement>) {
       {...props}
       xmlns="http://www.w3.org/2000/svg"
     >
+      <title>Date</title>
       <path
         fillRule="evenodd"
         clipRule="evenodd"

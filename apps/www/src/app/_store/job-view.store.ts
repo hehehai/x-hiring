@@ -1,5 +1,5 @@
 import { atom } from "jotai";
-import { atomWithStorage, createJSONStorage } from "jotai/utils";
+import { atomWithStorage } from "jotai/utils";
 
 export const activeAtom = atom<string | null>(null);
 
