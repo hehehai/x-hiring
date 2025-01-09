@@ -11,7 +11,7 @@ interface JobListProps {
 	firstSlice: Job[];
 }
 
-export const JobList = async ({
+export const JobList = ({
 	searchKeys = [],
 	dateRange,
 	type = "news",

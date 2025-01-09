@@ -5,7 +5,6 @@ import React, { memo, useEffect, useRef } from "react";
 
 import { Spinners } from "@/components/shared/icons";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
-
 import { JobItem } from "./job-item";
 
 interface JobMoreProps {
@@ -56,7 +55,7 @@ export const JobMore = memo(
 
 		return (
 			<>
-				{data?.pages.map((group, i) => (
+				{data?.pages.map((group) => (
 					<React.Fragment key={group.nextCursor}>
 						{group.data.map((job) => (
 							<JobItem key={job.id} data={job} searchKeys={searchKeys} />

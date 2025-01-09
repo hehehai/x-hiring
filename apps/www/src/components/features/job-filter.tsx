@@ -35,23 +35,26 @@ export const JobFilter = memo(() => {
 	}, [startDate, endDate]);
 
 	const handleSearch = useCallback(
-		(val: string[]) => {
-			setQuery({ search: val });
+		async (val: string[]) => {
+			await setQuery({ search: val });
 		},
 		[setQuery],
 	);
 
 	const handleDateChange = useCallback(
-		(dateValue: DateRange | undefined) => {
+		async (dateValue: DateRange | undefined) => {
 			const range = convertToValidDateRange([dateValue?.from, dateValue?.to]);
-			setQuery({ startDate: range[0] || null, endDate: range[1] || null });
+			await setQuery({
+				startDate: range[0] || null,
+				endDate: range[1] || null,
+			});
 		},
 		[setQuery],
 	);
 
 	const handleTypeChange = useCallback(
-		(type: "news" | "trending") => {
-			setQuery({ type });
+		async (type: "news" | "trending") => {
+			await setQuery({ type });
 		},
 		[setQuery],
 	);
